@@ -28,6 +28,5 @@ CREATE TABLE flights (
     NASDelay SMALLINT,
     SecurityDelay SMALLINT,
     LateAircraftDelay SMALLINT,
-    PRIMARY KEY(Year, Month, DayofMonth, CRSDepTime, TailNum)
+    PRIMARY KEY(Year, Month, DayofMonth, CRSDepTime, CRSArrTime, FlightNum, TailNum)
 );
-
