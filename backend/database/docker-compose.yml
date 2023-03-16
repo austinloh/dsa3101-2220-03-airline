@@ -1,0 +1,10 @@
+services:
+  db:
+    build: .
+    # Set max_allowed_packet to 256M (or any other value)
+    command: --max_allowed_packet=512M --connect_timeout=300
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpw
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pw
