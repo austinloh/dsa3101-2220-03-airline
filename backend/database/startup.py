@@ -16,4 +16,5 @@ with open('sql-scripts/InsertData.sql', 'w') as sqlFile:
             sqlFile.write('INSERT IGNORE INTO flights VALUES (' + ','.join([x if x.isnumeric() else "'" + x + "'" for x in mid]) + ');\n')
             #sqlFile.write(',(' + ','.join([x if x.isnumeric() else "'" + x + "'" for x in mid]) + ')\n')
             line = file.readline().decode('utf-8')[:-1] #remove \n at end of line
+            break
         #sqlFile.write(';\n')

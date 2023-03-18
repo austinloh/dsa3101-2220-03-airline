@@ -10,6 +10,8 @@ In database directory, check the following are present:
 - Dockerfile
 - docker-compose-yml
 - startup.py
+- connectingDB.py
+- requirements.txt
 
 In database directory, run 
 ```
@@ -24,4 +26,16 @@ docker compose up
 to setup SQL database
 
 ### Connecting
-How to connect to database?
+Ensure docker container is running on aws
+We have provided a test file to showcase querying from SQL database
+
+Run
+```
+pip install -r requirements.txt
+```
+
+In *connectingDB.py*, change aws ip address, path to pem file and SQL query to execute
+Run
+```
+python3 connectingDB.py
+```

@@ -8,3 +8,5 @@ services:
       - MYSQL_DATABASE=mydb
       - MYSQL_USER=user
       - MYSQL_PASSWORD=pw
+    ports:
+      - "3306:3306"
