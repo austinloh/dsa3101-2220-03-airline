@@ -3,8 +3,8 @@
 ### Setting up
 
 In database directory, check the following are present:
-- data folder
-    - data csv files compressed using bz2 ([data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7))
+- data folder (all data obtained from [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7))
+    - data csv files compressed using bz2 
 - sql-scripts folder
     - CreateTable.sql 
 - Dockerfile
