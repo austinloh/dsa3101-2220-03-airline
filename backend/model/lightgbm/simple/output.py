@@ -18,18 +18,25 @@ transforming = ['Month','DayofMonth', 'DayOfWeek', 'UniqueCarrier', 'TailNum', '
 columns = ['Month','DayofMonth', 'DayOfWeek', 'CRSDepTime', 'CRSArrTime', 'UniqueCarrier',
        'TailNum', 'CRSElapsedTime', 'Origin', 'Dest', 'Distance']
 
+
+
+
+
 #sample input. Actual label: 1
 testing = [3,28,5,635,912,'YV','N956LR', 97.0,'MEM','CLT',512]
+
 
 
 def lime_output(x):
   X = pd.DataFrame([x], columns = columns)
   X[transforming] = oe.transform(X[transforming])
+  res = hgb.predict(X)
   X = X.to_numpy()
   exp = explainer.explain_instance(X[0], hgb.predict_proba)
-  return exp
+  return res, exp
 
-exp = lime_output(testing)
+prediction, exp = lime_output(testing)
+print(prediction)
 print(exp.as_list())
 
 #output as html page
