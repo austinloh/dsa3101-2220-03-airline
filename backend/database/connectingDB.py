@@ -1,13 +1,16 @@
 import mysql.connector
 from sshtunnel import SSHTunnelForwarder
 
-#change aws ip address (current = 3.238.102.242), change path to pem file
-tunnel = SSHTunnelForwarder(('3.238.102.242', 22), ssh_username='ubuntu', ssh_pkey='/Users/austinloh/Downloads/dsa3101-03.pem', remote_bind_address=('127.0.0.1', 3306))
+#change aws ip address (current = 50.19.153.183), change path to pem file
+tunnel = SSHTunnelForwarder(('50.19.153.183', 22), ssh_username='ubuntu', ssh_pkey='/Users/austinloh/Downloads/dsa3101-03.pem', remote_bind_address=('127.0.0.1', 3306))
 tunnel.start()
+print(tunnel.local_bind_port)
 conn = mysql.connector.connect(host='127.0.0.1', user='root', password='rootpw', port=tunnel.local_bind_port, use_pure=True, database='mydb')
 cursor = conn.cursor()
 
 #change SQL command
-cursor.execute('SELECT * FROM flights LIMIT 1;') 
+cursor.execute('SHOW TABLES;') 
 result = cursor.fetchall()
 print(result)
+#cursor.close()
+#conn.close()
