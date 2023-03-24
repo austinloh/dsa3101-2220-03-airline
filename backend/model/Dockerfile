@@ -1,0 +1,17 @@
+FROM python:3.10.6-slim-buster
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+COPY main.py main.py 
+COPY lightgbm lightgbm
+COPY NeuralNetwork NeuralNetwork
+COPY StatisticalTest StatisticalTest
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+#RUN python fit_model.py
+
+ENV FLASK_APP main
+
+ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0"]
