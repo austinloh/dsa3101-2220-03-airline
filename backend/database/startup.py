@@ -46,7 +46,7 @@ for datafile in datafiles:
                     while len(mid) < length:
                         mid.append('NULL')
                     #print(','.join([x if (x.isnumeric() or x == 'NULL') else "'" + x + "'" for x in mid]))
-                    sqlFile.write('INSERT IGNORE INTO ' + filename + ' VALUES (' + ','.join([x if (is_float(x) or x == 'NULL') else "'" + x + "'" for x in mid]) + ');\n')
+                    sqlFile.write('INSERT IGNORE INTO ' + filename + ' VALUES (' + ','.join([x if (is_float(x) or x == 'NULL') else '"' + x + '"' for x in mid]) + ');\n')
                     #line = file.readline()[:-1] #remove \n at end of line
                     #break
                     #break
