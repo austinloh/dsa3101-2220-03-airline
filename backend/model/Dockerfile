@@ -14,4 +14,4 @@ RUN pip3 install -r requirements.txt
 
 ENV FLASK_APP main
 
-ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
