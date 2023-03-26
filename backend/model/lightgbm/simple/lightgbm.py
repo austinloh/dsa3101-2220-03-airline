@@ -6,9 +6,10 @@ import lime
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from lime import lime_tabular
 
-df = pd.read_csv('2008.csv')
+df = pd.read_csv('../../../database/data/2008.csv')
 df['ArrDelayed'] = (df['ArrDelay'] > 0).astype(int)
 
+#data preprocessing
 df.drop(['Year', 'DepTime', 'ArrTime', 'FlightNum', 'ActualElapsedTime', 'ArrDelay', 'DepDelay', 'AirTime', \
          'TaxiIn', 'TaxiOut', 'Cancelled', 'CancellationCode', 'Diverted','CarrierDelay', 'WeatherDelay', \
          'NASDelay', 'SecurityDelay', 'LateAircraftDelay'], axis=1, inplace=True)

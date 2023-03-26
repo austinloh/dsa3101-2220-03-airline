@@ -39,3 +39,10 @@ Run
 ```
 python3 connectingDB.py
 ```
+
+### Augmenting dataset with weather data
+Would have to decompress *2008.csv.bz2* first. <br>
+Run
+```
+python3 weather2008.py
+```

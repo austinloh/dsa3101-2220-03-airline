@@ -6,7 +6,7 @@ import lime
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from lime import lime_tabular
 
-df = pd.read_csv('2008_data_with_weather.csv')
+df = pd.read_csv('../../../database/data/2008_data_with_weather.csv')
 
 #data preprocessing
 df.drop(['Year', 'DepTime', 'ArrTime', 'FlightNum', 'ActualElapsedTime', 'DepDelay', 'AirTime', \
