@@ -40,7 +40,7 @@ Example usage are shown in *callingAPI.py*
    ![](lightgbm/weather/sample_plot.png)
 
 3. Neural Network
-   ![](NeuralNetwork/shap_plot.png)
+![](NeuralNetwork/shap_plot.png)
 
 4. Statistical Test
    - Chi-square
