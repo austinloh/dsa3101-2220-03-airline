@@ -34,21 +34,21 @@ Example usage are shown in *callingAPI.py*
 
 
 2. LightGBM + LIME
-    - Plain flight data
-    ![](lightgbm/simple/sample_plot.png)
-    - Flight data + weather data
-    ![](lightgbm/weather/sample_plot.png)
+   - Plain flight data
+   ![](lightgbm/simple/sample_plot.png)
+   - Flight data + weather data
+   ![](lightgbm/weather/sample_plot.png)
 
 3. Neural Network
-    ![](NeuralNetwork/shap_plot.png)
+   ![](NeuralNetwork/shap_plot.png)
 
 4. Statistical Test
-    - Chi-square
-    ![](StatisticalTest/chi2.png)
-    - ANOVA F-score
-    ![](StatisticalTest/Fscore.png)
-    - Information Gain
-    ![](StatisticalTest/IG.png)
+   - Chi-square
+   ![](StatisticalTest/chi2.png)
+   - ANOVA F-score
+   ![](StatisticalTest/Fscore.png)
+   - Information Gain
+   ![](StatisticalTest/IG.png)
 
 5. Time Series Analysis
 
