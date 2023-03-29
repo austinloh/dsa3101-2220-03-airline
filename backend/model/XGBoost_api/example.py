@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = "http://127.0.0.1:5000/predict"
+url = "http://127.0.0.1:5000/xgb_predict"
 
 sample_input = {
     "Year": 2006,

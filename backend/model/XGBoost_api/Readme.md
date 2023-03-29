@@ -17,7 +17,7 @@ The API will be available at http://127.0.0.1:5000/.
 
 Usage
 
-Send a POST request to the /predict endpoint with a JSON payload containing the input data. The input data should include the following fields:
+Send a POST request to the /xgb_predict endpoint with a JSON payload containing the input data. The input data should include the following fields:
 
 Year (int64)
 Month (int64)
