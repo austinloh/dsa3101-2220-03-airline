@@ -33,15 +33,18 @@ data_renamed = data[date_cols].rename(columns={'Year': 'year', 'Month': 'month',
 data['datetime'] = pd.to_datetime(data_renamed, format='%Y-%m-%d')
 data.head()
 
+# obtain coordinates of airports
 coordinates = pd.read_csv('./data/airports.csv')
 airport_state = coordinates.loc[:,['iata','state']]
 airport_state = airport_state.rename(columns={'iata':'Origin'})
 
+# merge airports with 2008 data
 data = data.merge(airport_state[['Origin', 'state']], on='Origin', how='left')
 data = data.rename(columns={'state': 'origin_state'})
 
 data['datetime'] = pd.to_datetime(data['datetime']).dt.strftime('%Y-%m-%d')
 weather_df = weather_df.rename(columns={'name':'origin_state'})
 
+#merge with weather data
 merged_data = data.merge(weather_df, on=['datetime', 'origin_state'], how='left')
 merged_data.to_csv('2008_data_with_weather.csv', index=False)
