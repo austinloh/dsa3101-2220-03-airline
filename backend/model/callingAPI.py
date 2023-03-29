@@ -1,4 +1,5 @@
 import requests
+import json
 
 URL = 'http://127.0.0.1:5000/'
 
@@ -66,7 +67,7 @@ sample_input = {
 
 headers = {"Content-Type": "application/json"}
 
-response = requests.post(url, data=json.dumps(sample_input), headers=headers)
+response = requests.post(URL, data=json.dumps(sample_input), headers=headers)
 
 print(response.json())
 #Will take extremely long time to run since the model is complexed.
