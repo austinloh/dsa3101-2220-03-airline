@@ -16,16 +16,19 @@ df.drop(['Year', 'DepTime', 'ArrTime', 'FlightNum', 'ActualElapsedTime', 'DepDel
          'moonphase', 'description', 'icon', 'stations', 'windgust', 'preciptype','uvindex'], axis=1, inplace=True)
 numerical = ['tempmax', 'tempmin', 'temp', 'feelslikemax' ,'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', \
              'precipprob', 'precipcover', 'snow', 'snowdepth', 'windspeed', 'winddir', 'sealevelpressure', 'cloudcover', 'visibility']
+#fill continuous features with mean
 for col in numerical:
   df[col].fillna(df[col].mean(), inplace = True)
 df['conditions'].fillna("unknown", inplace=True)
 df.dropna(inplace=True)
 
+# convert to categorical labels
 df['ArrDelayed'] = (df['ArrDelay'] > 0).astype(int)
 X = df.drop(['ArrDelayed'], axis=1)
 y = df['ArrDelayed']
 feature_names = list(X.columns)
 
+#encoding of labels
 le= LabelEncoder()
 le.fit(y)
 y = le.transform(y)
@@ -33,17 +36,20 @@ class_names = le.classes_
 
 categorical_features = [0,1,2,5,6,8,9,29]
 
+#encoding of categorical features
 oe = OrdinalEncoder(handle_unknown='use_encoded_value',unknown_value=-1)
 oe.fit(X[['Month', 'DayofMonth', 'DayOfWeek', 'UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'conditions']])
 X[['Month','DayofMonth', 'DayOfWeek', 'UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'conditions']] = \
 oe.transform(X[['Month', 'DayofMonth', 'DayOfWeek', 'UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'conditions']])
 
+#obtaining categories names
 categorical_names = {}
 i = 0
 for feature in categorical_features:
   categorical_names[feature] = oe.categories_[i]
   i+=1
 
+#training of model
 train, test, labels_train, labels_test = train_test_split(X, y, train_size=0.8, random_state=42)
 hgb2 = HistGradientBoostingClassifier(random_state = 42)
 hgb2.fit(train, labels_train)
@@ -55,6 +61,7 @@ pred = hgb2.predict(test)
 train_num = train.to_numpy()
 test_num = test.to_numpy()
 
+#creating of lime model
 explainer = lime_tabular.LimeTabularExplainer(train_num, feature_names = feature_names,class_names=class_names,
                                                    categorical_features=categorical_features, 
                                                    categorical_names=categorical_names, discretize_continuous=False)
@@ -66,13 +73,14 @@ i = 19000
 exp = explainer.explain_instance(test_num[i], hgb2.predict_proba)
 exp.show_in_notebook()
 
+#testing lime model
 testing = [2, 24, 7, 1545, 1802, 'XE', 'N17108', 137.0, 'EWR', 'LEX', 588,
        3.3, -6.8, -1.4, 2.0, -10.0, -3.9, -8.2, 60.8, 0.642, 100.0, 20.83,
        0.0, 0.6, 13.1, 276.2, 1020.0, 0.8, 15.9, 'Snow, Rain']
 columns = feature_names
 transforming = ['Month','DayofMonth', 'DayOfWeek', 'UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'conditions']
 
-#explainer
+#explainer, accepts list as input to output lime prediction
 def lime_output(x):
   X = pd.DataFrame([x], columns = columns)
   X[transforming] = oe.transform(X[transforming])
@@ -82,6 +90,7 @@ def lime_output(x):
 l = lime_output(testing)
 l.as_list()
 
+#output models
 from pickle import dump
 dump(hgb2, open('model.pkl', 'wb'))
 dump(oe, open('encoder.pkl', 'wb'))
