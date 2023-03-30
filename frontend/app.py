@@ -1,22 +1,13 @@
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc, Input, Output, State
 import dash
+import dash_bootstrap_components as dbc
+from dash_bootstrap_components._components.Container import Container
 
-app = Dash(__name__, use_pages=True)
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SIMPLEX])
+
+# PLOTLY_LOGO = "https://images.plot.ly/logo/new-branding/plotly-logomark.png"
 
 app.layout = html.Div([
-	html.H1('DSA3101 Group 3 Testing Multi-page app with Dash Pages'),
-
-    html.Div(
-        [
-            html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
-            for page in dash.page_registry.values()
-        ]
-    ),
-
 	dash.page_container
 ])
 

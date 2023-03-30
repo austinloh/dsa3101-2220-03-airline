@@ -7,17 +7,17 @@ from dash import html
 import pandas as pd
 import plotly.express as px
 #from dash.dependencies.import Input, Output
-from dash import Input, Output
+from dash import Input, Output, callback
+from apps import navigation
 
+dash.register_page(__name__)
 
 flights = pd.read_csv("2011_february_us_airport_traffic.csv")
 #flights = flights.groupby(['state'])['cnt'].agg('sum').reset_index(name='Total Flight Count')
 #flights_bar = px.bar(data_frame=flights, x='Total Flight Count', y='state', orientation='h', title='Total Flights by State')
-pic_link = 'https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmxpZ2h0fGVufDB8fDB8fA%3D%3D&w=1000&q=80'
 
-flights08 = pd.read_csv("2008.csv")
 
-app = dash.Dash(__name__)
+# app = dash.Dash(__name__)
 
 #app.layout = html.Div(children = [
 #	html.Div(style={'background-color':'lightblue'}),
@@ -25,8 +25,8 @@ app = dash.Dash(__name__)
 #	dcc.Graph(id='bar_graph', figure=flights_bar)
 #	]
 #)
-app.layout = html.Div([
-	html.Img(src=pic_link, style={'margin':'15px 0px 25px 0px'}),
+layout = html.Div(children=[
+	navigation.navbar,
 	html.H1('US Flights'),
 	html.Div(children = [
 		html.Div(
@@ -36,33 +36,33 @@ app.layout = html.Div([
 					id='state_dd',
 					options = [{'label':state, 'value':state}
 								for state in sorted(list(flights.state.dropna().unique()))],
-					style = {'width':'200px', 'margin':'0 auto'}
+					style = {'width':'200px', 'margin':'0px auto'}
 				)
 			],
 			style = {
 				'width':'350px', 'height':'150px',
-				'display':'inline-block', 'vertical-align':'top',
-				'border':'1px solid black', 'padding':'20px'
+				'vertical-align':'top',
+				'border':'1px solid black', 'padding':'20px', 'margin':'0px auto'
 			}
 		),
 		html.Div(
 			children = [
 				dcc.Graph(id='bar_graph',
-	      			style = {'height':'1000px'}
+	      			style = {'height':'1000px', 'margin':'0px auto'}
 	      		),
 				html.H3('Testing Site', style = {
 					'border':'2px solid black',
-					'width':'200px', 'margin':'0 auto'
+					'width':'200px', 'margin':'0px auto'
 				})
 			],
-			style = {'width':'700px','display':'inline-block'}
+			style = {'width':'700px', 'margin':'0px auto'}
 		)
 	])
 ],
 style = {'text-align':'center', 'display':'inline-block', 'width':'100%'}
 )
 
-@app.callback(
+@callback(
 	Output(component_id='bar_graph', component_property='figure'),
 	Input(component_id='state_dd', component_property='value')
 )
@@ -80,5 +80,5 @@ def update_plot(selection):
 
 
 
-if __name__ == '__main__':
-	app.run_server(debug=True)
+#if __name__ == '__main__':
+#	app.run_server(debug=True)
