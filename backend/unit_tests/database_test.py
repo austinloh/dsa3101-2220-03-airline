@@ -1,11 +1,10 @@
-#startup script
-#get data from website?
-#convert csv to sql insertion
+#from database.startup import convert_csv
 import bz2
 from os import listdir
 from os.path import isfile, join
 import re
 import csv
+import filecmp
 
 # Check is string can be converted to float
 def is_float(string):
@@ -33,7 +32,7 @@ def convert_csv(dir):
                         sqlFile.write('INSERT IGNORE INTO flights VALUES (' + ','.join([x if (x.isnumeric() or x == 'NULL') else "'" + x + "'" for x in mid]) + ');\n')
                         #sqlFile.write(',(' + ','.join([x if x.isnumeric() else "'" + x + "'" for x in mid]) + ')\n')
                         line = file.readline().decode('utf-8')[:-1] #remove \n at end of line
-                        #break
+
         elif '.csv' in datafile: #csv file
             filename = datafile.split('.')[0]
             if 'plane' in filename:
@@ -51,6 +50,11 @@ def convert_csv(dir):
                             mid.append('NULL')
                         #print(','.join([x if (x.isnumeric() or x == 'NULL') else "'" + x + "'" for x in mid]))
                         sqlFile.write('INSERT IGNORE INTO ' + filename + ' VALUES (' + ','.join([x if (is_float(x) or x == 'NULL') else '"' + x + '"' for x in mid]) + ');\n')
-                        #break
-if __name__ == 'main':
-    convert_csv('./data/')
+
+def test_convert_csv():
+    convert_csv('./test_data/')
+
+#correct_output = INSERT IGNORE INTO testdata VALUES ("00M","Thigpen,sa'd ",0,"MS","USA",31.95376472,-89.23450472);
+
+with open('./sql-scripts/Inserttestdata.sql', 'rb') as file:
+    assert filecmp.cmp('./sql-scripts/Inserttestdata.sql', './sql-scripts/correct.sql')
