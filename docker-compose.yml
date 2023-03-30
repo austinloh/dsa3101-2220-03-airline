@@ -8,19 +8,4 @@ services:
   api:
     build: ./backend/model
     ports: 
-      - "5000:5000"
-    depends_on:
-      - database
-  
-  db:
-    build: ./backend/database
-    command: --max_allowed_packet=512M --connect_timeout=300
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpw
-      - MYSQL_DATABASE=mydb
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=pw
-    ports:
-      - "3306:3306"
-
-  
+      - "5000:5000" 
