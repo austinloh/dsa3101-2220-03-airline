@@ -53,8 +53,8 @@ def convert_csv(dir):
 
 def test_convert_csv():
     convert_csv('./test_data/')
+    with open('./sql-scripts/Inserttestdata.sql', 'rb') as file:
+        assert filecmp.cmp('./sql-scripts/Inserttestdata.sql', './sql-scripts/correct.sql')
 
 #correct_output = INSERT IGNORE INTO testdata VALUES ("00M","Thigpen,sa'd ",0,"MS","USA",31.95376472,-89.23450472);
 
-with open('./sql-scripts/Inserttestdata.sql', 'rb') as file:
-    assert filecmp.cmp('./sql-scripts/Inserttestdata.sql', './sql-scripts/correct.sql')
