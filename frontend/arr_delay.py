@@ -10,13 +10,11 @@ app = Dash(__name__)
 
 df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
 df = pd.read_csv(df_zip.open("2008_data.csv"))
-iata_df = pd.read_csv("data/iata-icao.csv")
+airports_df = pd.read_csv("data/airports.csv")
 
 #------ importing and pre processing of data -------------
 
-# Obtain US iata airport codes
-us_iata = iata_df.loc[iata_df["country_code"]=="US", 
-                      ["iata","airport","longitude","latitude"]].sort_values(by="iata")
+airports_df = airports_df.loc[: , ["iata","airport","lat","long"]].sort_values(by="iata")
 
 # Using only non-cancelled flights data
 month_delay_df = df.loc[df["Cancelled"] == 0, ["Month","ArrDelay","Dest"]]
@@ -25,7 +23,7 @@ month_delay_df = month_delay_df.rename(columns={"Dest":"iata"})
 month_delay_df["AvgArrDelay"] = month_delay_df.groupby(["iata","Month"])["ArrDelay"].transform("mean")
 month_delay_df = month_delay_df.loc[:, ["iata","Month","AvgArrDelay"]].drop_duplicates().sort_values(by=["iata","Month"])
 
-month_iata_df = pd.merge(month_delay_df, us_iata, on="iata") 
+month_airports_df = pd.merge(month_delay_df, airports_df, on="iata") 
 #After merging, 9 rows were lost, not sure why, could be no record of iata code
 
 #------- App layout ----------
@@ -69,13 +67,13 @@ def update_graph(option_selected):
     
     container = "The month chosen was: {}".format(month_dict[option_selected])
 
-    temp_df = month_iata_df.copy()
+    temp_df = month_airports_df.copy()
     temp_df = temp_df[temp_df["Month"]==option_selected]
 
     # Plotly Express (PX)
     fig = px.scatter_geo(data_frame = temp_df, 
-                         lat = temp_df["latitude"], 
-                         lon = temp_df["longitude"], 
+                         lat = temp_df["lat"], 
+                         lon = temp_df["long"], 
                         #  locationmode = 'USA-states',
                          hover_name = temp_df["airport"],
                          scope = "usa",
