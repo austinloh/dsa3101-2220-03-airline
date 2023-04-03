@@ -1,0 +1,11 @@
+services:
+  web:
+    build: ./frontend
+
+    depends_on:
+      - api
+
+  api:
+    build: ./backend/model
+    ports: 
+      - "5000:5000" 

@@ -26,7 +26,7 @@ columns = ['Month','DayofMonth', 'DayOfWeek', 'CRSDepTime', 'CRSArrTime', 'Uniqu
 testing = [3,28,5,635,912,'YV','N956LR', 97.0,'MEM','CLT',512]
 
 
-
+# accept input as list, transform and predict output using lime model
 def lime_output(x):
   X = pd.DataFrame([x], columns = columns)
   X[transforming] = oe.transform(X[transforming])

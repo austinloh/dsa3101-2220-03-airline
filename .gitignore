@@ -2,3 +2,5 @@
 .ipynb_checkpoints
 #backend/database/data
 backend/database/sql-scripts/Insert*.sql
+__pycache__
+.pytest_cache

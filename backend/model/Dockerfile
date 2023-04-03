@@ -7,6 +7,8 @@ COPY main.py main.py
 COPY lightgbm lightgbm
 COPY NeuralNetwork NeuralNetwork
 COPY StatisticalTest StatisticalTest
+COPY XGBoost_api XGBoost_api
+COPY Time_Series_Analysis Time_Series_Analysis
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
@@ -14,4 +16,4 @@ RUN pip3 install -r requirements.txt
 
 ENV FLASK_APP main
 
-ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
