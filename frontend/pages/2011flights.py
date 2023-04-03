@@ -27,6 +27,7 @@ flights = pd.read_csv("2011_february_us_airport_traffic.csv")
 #)
 layout = html.Div(children=[
 	navigation.navbar,
+    navigation.sidebar,
 	html.H1('US Flights'),
 	html.Div(children = [
 		html.Div(

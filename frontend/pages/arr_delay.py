@@ -6,6 +6,7 @@ import dash
 from dash import Dash, html, dcc, Input, Output, callback
 import dash_bootstrap_components as dbc
 import zipfile
+from apps import navigation
 
 dash.register_page(__name__)
 
@@ -30,6 +31,9 @@ month_airports_df = pd.merge(month_delay_df, airports_df, on="iata")
 #------- App layout ----------
 
 layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
+
+    navigation.navbar,
+    navigation.sidebar,
 
     html.H1("Average Arrival Delay In Destination Airports", style={'text-align':'center'}),
 
