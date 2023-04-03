@@ -12,7 +12,8 @@ Before running `docker compose up` you should have at least these in your curren
 ├── app.py
 ├── docker-compose.yml
 ├── Dockerfile
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 ### **To run**
 ```
