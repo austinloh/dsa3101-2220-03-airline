@@ -26,7 +26,7 @@ navbar = dbc.NavbarSimple(
      ],
      brand="Flight Models",
      brand_href="/",
-     color="primary",
+     color="#D27685",
      dark=True,
      fluid=True,
      links_left=True,
