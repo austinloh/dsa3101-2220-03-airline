@@ -82,7 +82,7 @@ sidebar = html.Div(
 
 content = html.Div(id="page-content", style=CONTENT_STYLE, children=[dash.page_container])
 
-app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
+app.layout = html.Div([dcc.Location(id="url"), navbar, sidebar, content])
 
 # app.layout = html.Div([
 # 	dash.page_container
