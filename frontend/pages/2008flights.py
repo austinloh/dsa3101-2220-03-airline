@@ -8,7 +8,7 @@ import pandas as pd
 import plotly.express as px
 #from dash.dependencies.import Input, Output
 from dash import Input, Output, callback
-#from apps import navigation
+
 import zipfile
 
 dash.register_page(__name__)
@@ -18,8 +18,7 @@ df = pd.read_csv(df_zip.open("2008_data.csv"))
 airports_df = pd.read_csv("data/airports.csv")
 
 layout = html.Div(children=[
-    # navigation.navbar,
-    # navigation.sidebar,
+
     html.Div([
         html.H1('Homepage'),
         html.P('2008 Flights in the US'),
