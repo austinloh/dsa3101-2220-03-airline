@@ -26,13 +26,23 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H1("Menu"), #, className="display-4"
+        # html.Img(src="assets/plane_icon.png", height="30px"),
+        dbc.Row(
+            [
+                dbc.Col(html.A([html.Img(src="assets/plane_icon.png", height="50px")], 
+                               href="/")), #clicking on icon returns to homepage too
+                dbc.Col(html.H1("Menu")),
+            ],
+        align="center",     
+        ),
+        # html.H1("Menu"),
         html.Hr(),
         html.P(
             "Visualize US airline data from between January to April 2008"
         ),
         dbc.Nav(
             [
+                dbc.NavLink("Home", href="/", active="exact"),
                 dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
                 dbc.NavLink("Page 1", href="/page-1", active="exact"),
                 dbc.NavLink("Page 2", href="/page-2", active="exact"),
@@ -52,7 +62,9 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 
 def render_page_content(pathname):
-    if pathname == dash.page_registry['pages.arr_delay']['path']:
+    if pathname == "/":
+         return html.P("This is our home page! :D")
+    elif pathname == dash.page_registry['pages.arr_delay']['path']:
         return dash.page_registry['pages.arr_delay']['layout']
     elif pathname == "/page-1":
         return html.P("This is the content of page 1. Yay!")
