@@ -1,15 +1,14 @@
 import dash_bootstrap_components as dbc
-#import dash_html_components as html
-from dash import html
-#from app import app
-from dash.dependencies import Input, Output, State
-import dash
+# call 
+# from apps import navigation
+# for every page
 
 navbar = dbc.NavbarSimple(
      children=[
+        # below are establishing the links and how to establish them
          dbc.NavItem(dbc.NavLink("Home", href="/")),
-         dbc.NavItem(dbc.NavLink("Test", href="/test")),
-	     dbc.NavItem(dbc.NavLink("Test2", href="/test2")),
+         dbc.NavItem(dbc.NavLink("2011 Flights", href="/2011flights")),
+	     dbc.NavItem(dbc.NavLink("2008 Flights", href="/2008flights")),
          dbc.DropdownMenu(
              children=[
                  dbc.DropdownMenuItem("More pages", header=True),
@@ -28,3 +27,4 @@ navbar = dbc.NavbarSimple(
      links_left=True,
      sticky='Top'  
  )
+

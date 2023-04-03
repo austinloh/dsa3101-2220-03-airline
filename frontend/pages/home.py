@@ -8,13 +8,14 @@ pic_link = 'https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=r
 
 layout = html.Div(children=[
     navigation.navbar,
-    html.Div(children='''
-        This is our Home page content.
-    '''),
-    html.Div([
+    html.Div( children=[
         html.H1('Homepage'),
         html.P('Flights in the US'),
         html.Img(src=pic_link, style={'padding':'15px 5px 15px 5px'}),
-    ])
+    ]),
+    html.Div( children=[
+        
+    ]
+             )
     ]
 )
