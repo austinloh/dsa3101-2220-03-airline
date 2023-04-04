@@ -10,7 +10,7 @@ h1 = {'Content-type': 'application/json', 'Accept': 'application/json'}
 #       'TailNum', 'CRSElapsedTime', 'Origin', 'Dest', 'Distance']
 params1 = {'inputs': [3, 28, 5, 635, 912, 'YV', 'N956LR', 97.0, 'MEM', 'CLT', 512]}
 req = requests.get('http://127.0.0.1:5000/api/lime_fi',headers=h1, json=params1)
-#req.text
+#req.json
 #output is a list containing feature importance
 #e.g. '[["DayOfWeek=5",0.04459373534188866],["CRSDepTime",0.042533720995852516],["Distance",0.022956906602916605],\
 # ["DayofMonth=28",-0.02028326218839363],["Dest=CLT",-0.01361981943433478],["Origin=MEM",0.012663409910100145],\
@@ -23,7 +23,7 @@ h1 = {'Content-type': 'application/json', 'Accept': 'application/json'}
 #       'TailNum', 'CRSElapsedTime', 'Origin', 'Dest', 'Distance']
 params1 = {'inputs': [3, 28, 5, 635, 912, 'YV', 'N956LR', 97.0, 'MEM', 'CLT', 512]}
 req = requests.get('http://127.0.0.1:5000/api/lime_plot',headers=h1, json=params1)
-#req.text
+#req.json
 #output is a html string? Need to figure out how to render if using
 #'"<html>\\n  ... ... </html>"\n'
 
@@ -67,7 +67,7 @@ sample_input = {
 
 headers = {"Content-Type": "application/json"}
 
-response = requests.post(URL, data=json.dumps(sample_input), headers=headers)
+response = requests.post('http://127.0.0.1:5000/api/xgb_predict', data=json.dumps(sample_input), headers=headers)
 
 print(response.json())
 #Will take extremely long time to run since the model is complexed.
