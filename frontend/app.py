@@ -110,6 +110,7 @@ sidebar = html.Div(
                dbc.NavLink("2008 Flights", href=dash.page_registry['pages.2008flights']['path'], active="exact"),
                dbc.NavLink("2011 Flights", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
                dbc.NavLink("Page 2", href="/page-2", active="exact"),
+               dbc.NavLink("XGBoost Model", href=dash.page_registry['pages.models']['path'], active="exact"),
            ],
            vertical=True,
            pills=True,
@@ -171,6 +172,8 @@ def render_page_content(pathname):
        return dash.page_registry['pages.2008flights']['layout']
    elif pathname == dash.page_registry['pages.2011flights']['path']:
        return dash.page_registry['pages.2011flights']['layout']
+   elif pathname == dash.page_registry['pages.models']['path']:
+       return dash.page_registry['pages.models']['layout']
    elif pathname == "/page-1":
        return html.P("This is the content of page 1. Yay!")
    elif pathname == "/page-2":
