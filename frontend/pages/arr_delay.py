@@ -46,6 +46,9 @@ layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
                 ),
     
     html.Div(id='output_container', children=[]),
+
+    html.P("Hover over the map to see the average arrival delay in minutes for the current selected month"),
+
     html.Br(),
 
     dcc.Graph(id='my_map', figure={})
