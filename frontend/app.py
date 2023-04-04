@@ -26,30 +26,31 @@ navbar = dbc.NavbarSimple(
      ],
      brand="Flight Models",
      brand_href="/",
-     color="#D27685",
+     color="#343a40",
      dark=True,
      fluid=True,
      links_left=True,
-     sticky='Top'  
+     sticky="top"  
  )
 
 SIDEBAR_STYLE = {
     "position": "fixed",
-    "top": 55,
+    "top": 71,
     "left": 0,
     "bottom": 0,
     "width": "16rem",
     "height": "100%",
+    "position": "fixed",
     "z-index": 1,
     "overflow-x": "hidden",
     "transition": "all 0.5s",
-    "padding": "0rem 0rem",
-    "background-color": "#66347F",
+    "padding": "1rem 1rem",
+    "background-color": "#7b8a8b",
 }
 
 SIDEBAR_HIDDEN = {
     "position": "fixed",
-    "top": 55,
+    "top": 71,
     "left": "-16rem",
     "bottom": 0,
     "width": "16rem",
@@ -57,8 +58,8 @@ SIDEBAR_HIDDEN = {
     "z-index": 1,
     "overflow-x": "hidden",
     "transition": "all 0.5s",
-    "padding": "0rem 0rem",
-    "background-color": "#66347F",
+    "padding": "1rem 1rem",
+    #"background-color": "#66347F",
 }
 
 
@@ -75,15 +76,15 @@ CONTENT_STYLE = {
     "margin-left": "18rem",
     "margin-right": "2rem",
     "padding": "0rem 0rem",
-    #"background-color": "#f8f9fa",
+    "background-color": "#f8f9fa",
 }
 
 CONTENT_STYLE1 = {
     "transition": "margin-left .5s",
-    "margin-left": "0rem",
+    "margin-left": "2rem",
     "margin-right": "0rem",
     "padding": "0rem 0rem",
-    #"background-color": "#f8f9fa",
+    "background-color": "#f8f9fa",
 }
 
 sidebar = html.Div(
@@ -124,8 +125,8 @@ content = html.Div(id="page-content", style=CONTENT_STYLE, children=[dash.page_c
 app.layout = html.Div([
      dcc.Store(id='side_click'), # added this line
      dcc.Location(id="url"), 
+     sidebar,
      navbar, 
-     sidebar, 
      content])
 
 
@@ -181,8 +182,8 @@ def render_page_content(pathname):
            html.H1("404: Not found", className="text-danger"),
            html.Hr(),
            html.P(f"The pathname {pathname} was not recognised..."),
-       ],
-       className="p-3 bg-light rounded-3",
+       ]#,
+       #className="p-3 bg-light rounded-3",
    )
 
 if __name__ == '__main__':
