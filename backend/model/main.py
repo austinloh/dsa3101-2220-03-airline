@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_file, render_template
 from pickle import load
 import pandas as pd
 import lime
+import numpy as np
 
 app = Flask(__name__)
 
@@ -48,47 +49,59 @@ def fn():
 #    return render_template('uploaded.html', fname = f.filename)
 
 # Load the XGBoost model
-with open("XGBoost_api/XGBoost_model_better.pkl", "rb") as f:
-    xgb = load(f)
+with open("XGBoost_api_no_onehot/XGBoost_model_no_onehot.pkl", "rb") as f:
+    model = load(f)
 
 # Load the label encodings
-with open("XGBoost_api/label_encodings.pkl", "rb") as f:
-    xgb_encodings = load(f)
+with open("XGBoost_api_no_onehot/no_onehot_encoder_dictionary.pkl", "rb") as f:
+    encoding_dict = load(f)
+
+def transform_with_fallback(encoder, column_data):
+    try:
+        return encoder.transform(column_data)
+    except ValueError as e:
+        print(f"Warning: {str(e)}")
+        return -1
 
 # Define a function to preprocess the input data
 def preprocess_input(input_data):
     input_df = pd.DataFrame(input_data, index=[0])
 
-    # Apply label encodings
-    input_df['TailNum'] = xgb_encodings['TailNum'].transform(input_df['TailNum'])
-    input_df['Origin'] = xgb_encodings['Origin'].transform(input_df['Origin'])
-    input_df['Dest'] = xgb_encodings['Dest'].transform(input_df['Dest'])
-    input_df['origin_state'] = xgb_encodings['origin_state'].transform(input_df['origin_state'])
+    # Convert categorical columns to category data type
+    cat_cols = ['UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'origin_state', 'conditions', 'description']
+    for col in cat_cols:
+        input_df[col] = input_df[col].astype('category')
 
-    # Apply one-hot encodings
-    unique_carrier_ohe = xgb_encodings['UniqueCarrier'].transform(input_df[['UniqueCarrier']])
-    conditions_ohe = xgb_encodings['conditions'].transform(input_df[['conditions']])
-    description_ohe = xgb_encodings['description'].transform(input_df[['description']])
+    # Replace missing categorical values with 'unknown'
+    for col in input_df.select_dtypes(include=['category']):
+        input_df[col] = input_df[col].cat.add_categories(['unknown'])
+        input_df[col].fillna('unknown', inplace=True)
 
-    # Convert the one-hot encoded arrays to dataframes
-    unique_carrier_df = pd.DataFrame(unique_carrier_ohe.toarray(), columns=xgb_encodings['UniqueCarrier'].get_feature_names_out(['UniqueCarrier']))
-    conditions_df = pd.DataFrame(conditions_ohe.toarray(), columns=xgb_encodings['conditions'].get_feature_names_out(['conditions']))
-    description_df = pd.DataFrame(description_ohe.toarray(), columns=xgb_encodings['description'].get_feature_names_out(['description']))
+    # Replace missing numeric values with mean of that column
+    for col in input_df.select_dtypes(include=[np.number]):
+        mean_val = input_df[col].mean()
+        input_df[col].fillna(mean_val, inplace=True)
 
-    # Concatenate the one-hot encoded dataframes with the original dataframe
-    input_df = pd.concat([input_df.drop(columns=['UniqueCarrier', 'conditions', 'description']), unique_carrier_df, conditions_df, description_df], axis=1)
+    # Apply label encodings using the encoding dictionary
+    for column in cat_cols:
+        if column in encoding_dict:
+            input_df[column] = input_df[column].map(encoding_dict[column])
+        else:
+            input_df[column] = -1  # Assign a default value to unseen labels
 
     return input_df.values[0]
 
 
-@app.route('/xgb_predict', methods=['POST'])
+@app.route('/api/xgb_predict', methods=['POST'])
 def predict():
     input_data = request.json
-    # input_data_dict = json.loads(input_data)  # Remove this line
-    preprocessed_data = preprocess_input(input_data)  # Use input_data directly
-    prediction = xgb.predict(preprocessed_data)
+    print("Input data:")
+    print(input_data)
+    preprocessed_data = preprocess_input(input_data)
+    print("Preprocessed data:")
+    print(preprocessed_data)
+    prediction = model.predict(preprocessed_data.reshape(1, -1))
+    print("Model prediction:")
+    print(prediction)
     response = {'prediction': int(prediction[0])}
     return jsonify(response)
-
-if __name__ == '__main__':
-    app.run(debug=True)
