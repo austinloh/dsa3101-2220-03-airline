@@ -46,6 +46,9 @@ layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
                 ),
     
     html.Div(id='output_container', children=[]),
+
+    html.P("Hover over the map to see the average arrival delay in minutes for the current selected month"),
+
     html.Br(),
 
     dcc.Graph(id='my_map', figure={})
@@ -60,8 +63,6 @@ layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
 )
 
 def update_graph(option_selected):
-    print(option_selected)
-    print(type(option_selected))
 
     month_dict = {1:"January", 2:"February", 3:"March", 4:"April", 5:"May", 6:"June",
                   7:"July", 8:"August", 9:"September", 10:"October", 11:"November", 12:"December"}
