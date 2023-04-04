@@ -106,6 +106,7 @@ sidebar = html.Div(
            [
                dbc.NavLink("Home", href="/", active="exact"),
                dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
+               dbc.NavLink("2008 Daily Delays Heatmap", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
                dbc.NavLink("2008 Flights", href=dash.page_registry['pages.2008flights']['path'], active="exact"),
                dbc.NavLink("2011 Flights", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
                dbc.NavLink("Page 2", href="/page-2", active="exact"),
@@ -164,6 +165,8 @@ def render_page_content(pathname):
         return dash.page_registry['pages.home']['layout']
    elif pathname == dash.page_registry['pages.arr_delay']['path']:
        return dash.page_registry['pages.arr_delay']['layout']
+   elif pathname == dash.page_registry['pages.heatmap']['path']:
+       return dash.page_registry['pages.heatmap']['layout']
    elif pathname == dash.page_registry['pages.2008flights']['path']:
        return dash.page_registry['pages.2008flights']['layout']
    elif pathname == dash.page_registry['pages.2011flights']['path']:
