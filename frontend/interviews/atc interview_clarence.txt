@@ -1,0 +1,78 @@
+clarence: joined in 2015 oct atc, working in cas until now (7 years), no background in aviation, cs major in sutd 
+
+he thinks delays are caused by atcs:
+- us v diff from how sg works; atc is very country specific -- so he is coming from sg side so his flights are v focused on international side whereas us flights are domestic heavy 
+- for eg east coast flights to west coast first; so for the data side they will be v concerned by how many flights departing in each side everyday, in days of the week (can give them an expectation for each day)
+- but in context of sg- he say usually tue/wed got lesser traffic volume  (10% or less difference kind)
+- dashboard w set of visualisations; to revisit past data for delays (historical visualisations) -- but they (atc) are more concerned about now, not past time -- this is more of air control management 
+
+local context: 
+- tower control-- in charge of aircraft movements in the apron(?)/ airside; recieving aricraft, taxi-ing, departure, ...
+- singapore approach-- for airborne flights (handed over from tower); in charge of aircrafts in climb/ descend within sg; changi and seletar mainly but bc of close promximity issues they will also need to handle jb, batam and tanjong penang traffic 
+- enroute/ area controller-- (himself) control sg air far(?) help what are these terms; 13k to 55k ft above land; climbing aircraft to their final cruising level & descending them low enough to pass to sg approach  
+
+q2: 
+arrival delays- technical & strategic delays
+-technical: short term delays for eg holding aircraft in the air; some factors: weather-- pilot cannot see runway, airspace closure-- national day parade.... red lions & all LOL, enroute factors-- for eg from japan to sg, got cumulonimbus cloud then the pilots will have to divert away from the route & then that causes some delays (1/2mins)  
+-strategic: "pre-planned" delays
+
+departure delays- strategic & techical delays
+- weather: need safety distance; increase intervals of departures --> aircrafts need to wait abit longer to delay 
+
+** so he say alot of it due to technical delays
+- the ranking depends on the situation; for eg the weather... if it is predictable it may not be so bad, but lets say if they cannot predict how long the situation is held for, then it will get bad 
+
+q3:
+no bc landing/ departing is the pilot's decision-- they js need to make sure pilots are SAFE 
+but then they can make the decision whether to tell the pilot if its safe/ unsafe for departure-- "runway cleared for departure"
+
+q4: 
+he dk bc the cost & stuff need to ask the airline themselves
+- holding in air burning fuel waste money
+- reputation issue...
+- he said smth abt emergency situations but its very heavily contextualised in sg so im not sure if it will apply well to our project; due to our airspace being so small, if the weather is not good & many aircrafts are being held in air & theres an emergency situation (medical attention/ aircraft itself got problem) on board a certain aircraft, they will have to land in some other airports & that might end up to be in kl 
+
+for the atcs, they are really more concerned about NOW & not the past/ future --> this is a project that should be more focused on the air traffic management people 
+
+q5 & 6:
+USEFUL: 
+- how to distribute 1 big arrival group to a longer time range; so like no spike but kind of averaging out the arrivals 
+- bar charts: arrivals at each hour & then decide on a cut off number & spread it out st it doesnt max out the capacity 
+
+NOT USEFUL:
+vis 4 should change to a pie chart --> the percentages can be determined more clearer 
+vis 1 --> delay should be represented in red & not green 
+
+delays on the atc side:
+- communication w pilots --> can lead to delays when theres too many flights are gg on; so if area is very busy... cross transmission by the aircrafts that may cause delays
+- radio frequency failures 
+- correlation bw radio frequencies/ talk time in the air wrt to busy-ness in the sector 
+- weather in airspace & enroute 
+- for the data we should look at 9/11 --> he say that one got very major delay & effects in the air
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
