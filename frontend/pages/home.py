@@ -7,8 +7,12 @@ pic_link = 'https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=r
 
 layout = html.Div(children=[
     html.Div( children=[
-        html.H1('Homepage'),
-        html.P('Flights in the US'),
+        html.H1('Homepage', style={'textAlign': 'center'}),
+        html.Br(),
+        html.H3("Data is the backbone of modern air traffic control, but it's up to YOU to interpret and use it effectively to ensure safe and efficient operations in the skies."),
+        html.Br(),
+        html.H5("You need fast and clear data visualizations to make informed decisions in real-time. We have built this resource to provide YOU the essential tools to enhance your situational awareness and manage the complexities of modern air traffic control with confidence."),
+        html.Br(),
         html.Img(src=pic_link, style={'width': '70vw', 'padding':'15px 5px 15px 5px'}),
     ])
     ]

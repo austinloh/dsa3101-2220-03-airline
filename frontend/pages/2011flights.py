@@ -25,23 +25,27 @@ flights = pd.read_csv("2011_february_us_airport_traffic.csv")
 #	]
 #)
 layout = html.Div(children=[
-
-	html.H1('US Flights'),
+	html.H1("All US Flights by State and City", style={'text-align':'center'}),
+    html.Br(),
+	html.H5("Get a comprehensive overview of flight traffic across the United States with this interactive bargraph showcasing the breakdown of flight counts by city for every state in February 2011 - a powerful tool for optimizing flight routes, managing resources, and ensuring smooth operations:"),
+	html.Br(),
 	html.Div(children = [
 		html.Div(
 			children = [
-				html.H2('Select State'),
+				# html.H3('Select State'),
 				dcc.Dropdown(
 					id='state_dd',
+					placeholder="Select state...",
 					options = [{'label':state, 'value':state}
 								for state in sorted(list(flights.state.dropna().unique()))],
 					style = {'color': 'black', 'width':'200px', 'margin':'0px auto'}
 				)
 			],
 			style = {
-				'width':'350px', 'height':'150px',
-				'vertical-align':'top',
-				'border':'1px solid black', 'padding':'20px', 'margin':'0px auto'
+				'width':'350px', 'height':'90px',
+				# 'vertical-align':'top',
+				# 'border':'1px solid black', 'padding':'20px',
+				'margin':'0px auto',
 			}
 		),
 		html.Div(
@@ -49,17 +53,18 @@ layout = html.Div(children=[
 				dcc.Graph(id='bar_graph',
 	      			style = {'height':'1000px', 'margin':'0px auto'}
 	      		),
-				html.H3('Testing Site', style = {
-					'border':'2px solid black',
-					'width':'200px', 'margin':'0px auto'
-				})
+				# html.H3('Testing Site', style = {
+				# 	'border':'2px solid black',
+				# 	'width':'200px', 'margin':'0px auto'
+				# })
 			],
 			style = {'width':'700px', 'margin':'0px auto'}
 		)
-	])
-],
-style = {'text-align':'center', 'display':'inline-block', 'width':'100%'}
-)
+	], style = {'text-align':'center', 'display':'inline-block', 'width':'100%'}),
+	html.Br(),
+	html.Br(),
+    html.H6([('Data taken from: '), html.Em('February 2011')], style={'fontSize':'70%', 'textAlign': 'center'})
+])
 
 @callback(
 	Output(component_id='bar_graph', component_property='figure'),

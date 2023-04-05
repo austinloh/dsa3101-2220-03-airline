@@ -29,10 +29,11 @@ month_airports_df = pd.merge(month_delay_df, airports_df, on="iata")
 
 #------- App layout ----------
 
-layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
+layout = html.Div(children=[
 
-    html.H1("Average Arrival Delay In Destination Airports", style={'text-align':'center'}),
+    html.H1("US Airport Average Arrival Delays By Month", style={'text-align':'center'}),
 
+    html.Br(),
     dcc.Dropdown(id="select_month",
                  options=[
                     {"label": "January", "value":1},
@@ -41,19 +42,24 @@ layout = html.Div(style={'backgroundColor': 'lightpurple'}, children=[
                     {"label": "April", "value":4}],
                 multi=False,
                 value=1,
-                #style={'width': "40%"},
-                className="dropdown"
+                style={'color': 'black', 'width':'300px', 'margin':'0px auto'}
+                # className="dropdown"
                 ),
     
-    html.Div(id='output_container', children=[]),
+    html.Br(),
+    html.Div(id='output_container', children=[], style={'text-align': 'center'}),
 
-    html.P("Hover over the map to see the average arrival delay in minutes for the current selected month"),
+    # html.P("Hover over the map to see the average arrival delay in minutes for the current selected month"),
 
     html.Br(),
 
-    dcc.Graph(id='my_map', figure={})
+    dcc.Graph(id='my_map', figure={}),
 
-], className="container")
+    html.Br(),
+    html.Br(),
+    html.H6([('Data taken from: '), html.Em('January - April 2008')], style={'fontSize':'70%', 'textAlign': 'center'})
+
+], className="container", style={'backgroundColor': 'lightpurple'})
 
 # ----- Connect Plotly graphs with Dash Components -----
 @callback(
@@ -67,7 +73,7 @@ def update_graph(option_selected):
     month_dict = {1:"January", 2:"February", 3:"March", 4:"April", 5:"May", 6:"June",
                   7:"July", 8:"August", 9:"September", 10:"October", 11:"November", 12:"December"}
     
-    container = "The month chosen was: {}".format(month_dict[option_selected])
+    container = "Hover over the map to see the average arrival delay in minutes for: {}".format(month_dict[option_selected])
 
     temp_df = month_airports_df.copy()
     temp_df = temp_df[temp_df["Month"]==option_selected]

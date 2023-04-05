@@ -32,7 +32,7 @@ arr_fig = calplot(
          y="ArrDelay",
          dark_theme=True,
          years_title=True,
-         title="2008 Daily Arrival Delays (mins)",
+         title="Daily Arrival Delays (mins)",
          name="Total arrival delay(mins)",
          colorscale="RdBu_r",
          month_lines_width=3,
@@ -44,7 +44,7 @@ dep_fig = calplot(
          x="Date",
          y="DepDelay",
          dark_theme=True,
-         title="2008 Daily Departure Delays (mins)",
+         title="Daily Departure Delays (mins)",
          name="Total departure delay(mins)",
          colorscale="RdBu_r",
          month_lines_width=3,
@@ -53,19 +53,23 @@ dep_fig = calplot(
 
 #------- App layout -------------
 layout = html.Div(children=[
-    html.H1("Heatmap of delays over days in 2008", style={'text-align':'center'}),
+    html.H1("Heatmap of US Flight Delays by Day", style={'text-align':'center'}),
+
+    html.Br(),
+
+    html.H5("Stay ahead of the curve and proactively manage flight delays with this insightful Heatmap visualization showcasing flight delays over days in 2008 - an essential tool for predicting potential delays and improving overall flight scheduling:"),
 
     html.Br(),
 
     dcc.Dropdown(id='delay_type',
                 options=[
                     {"label": "Arrival", "value":"arrival"},
-                    {"label": "Delay", "value":"delay"}],
+                    {"label": "Departure", "value":"delay"}],
                 multi=False,
-                placeholder="Select delay type",
-                value = "arrival",
-                #style={'width': "40%"},
-                className="dropdown"
+                placeholder="Select delay type...",
+                # value = "arrival",
+                style={'color': 'black', 'width':'300px', 'margin':'0px auto'},
+                # className="dropdown"
                 ),
 
     html.Br(),
@@ -74,10 +78,15 @@ layout = html.Div(children=[
 
     html.Br(),
     html.Br(),
-    html.Br(),
 
-    html.P("Observe how regardless of arrival or departure delay, the Friday row in general have higher delays, \
-           indicated by more dark red pixels")
+    html.P("Observe how regardless of arrival or departure delay, the Friday rows in general have higher delays, \
+           indicated by darker red pixels!"),
+
+    html.Br(),
+    html.Br(),
+    html.Br(),
+    html.H6([('Data taken from: '), html.Em('January - April 2008')], style={'fontSize':'70%', 'textAlign': 'center'})
+
 
 ])
 
