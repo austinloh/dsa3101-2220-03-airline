@@ -88,17 +88,21 @@ layout = html.Div(children=[
     ]),
     html.Br(),
     html.Br(),
+    html.H3([html.Strong("Data: where knowledge meets opportunity.")]),
+    html.H5(" We looked at data from over a million flights and built a simple model from it, so YOU don't have to. Among the top factors that determine if a flight will be delayed, we handpicked these 3 for YOU to customize. Try our tool to take a look at how these 3 factors affect a flight's delay:"),
+    html.Br(),
+    html.Br(),
     dbc.Row([
         html.H6("Flight Origin:", style={'textAlign': 'center'}),
         html.Br(),
         dcc.Dropdown(
             id='origin_state',
             options = ['AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'FL', 'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY'],
-            style={'color': 'black'},
-            placeholder="Select a state..."
+            placeholder="Select state...",
+            style={'color': 'black', 'width':'300px', 'margin':'0px auto'}
+            
         )
     ]),
-    html.Br(),
     html.Br(),
     dbc.Row([
         dbc.Col([
@@ -126,7 +130,11 @@ layout = html.Div(children=[
                 vertical=True
             )
         ])
-    ])
+    ]),
+    html.Br(),
+    html.Br(),
+    html.H6([('Data taken from: '), html.Em('2006 - 2008')], style={'fontSize':'70%', 'textAlign': 'center'})
+
 ])
 
 # ----- Connect Plotly graphs with Dash Components -----

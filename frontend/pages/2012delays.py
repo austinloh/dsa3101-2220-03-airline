@@ -197,5 +197,12 @@ fig.update_layout(
 #fig.show()
 
 layout = html.Div([
-    dcc.Graph(figure=fig)
+    html.H1("Map of Flights with Arrival Delays to JFK Airport", style={'text-align':'center'}),
+    html.Br(),
+    html.H5('Gain a bird\'s-eye view of JFK airport\'s flight traffic on a busy day in January 2012 with this flight map visualization - an invaluable tool for optimizing flight patterns and ensuring safe and efficient operations:'),
+    html.Br(),
+    dcc.Graph(figure=fig),
+    html.Br(),
+    html.Br(),
+    html.H6([('Data taken from: '), html.Em('21 January 2012')], style={'fontSize':'70%', 'textAlign': 'center'})
 ])
