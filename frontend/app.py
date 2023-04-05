@@ -26,7 +26,7 @@ navbar = dbc.NavbarSimple(
      ],
      brand="Flight Models",
      brand_href="/",
-     color="#343a40",
+     color="#212529",
      dark=True,
      fluid=True,
      links_left=True,
@@ -45,7 +45,7 @@ SIDEBAR_STYLE = {
     "overflow-x": "hidden",
     "transition": "all 0.5s",
     "padding": "1rem 1rem",
-    "background-color": "#7b8a8b",
+    "background-color": "#343a40",
 }
 
 SIDEBAR_HIDDEN = {
@@ -128,7 +128,8 @@ app.layout = html.Div([
      dcc.Location(id="url"), 
      sidebar,
      navbar, 
-     content])
+     content,
+     ])
 
 
 @app.callback(
