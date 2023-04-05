@@ -9,7 +9,7 @@ layout = html.Div(children=[
     html.Div( children=[
         html.H1('Homepage'),
         html.P('Flights in the US'),
-        html.Img(src=pic_link, style={'padding':'15px 5px 15px 5px'}),
+        html.Img(src=pic_link, style={'width': '70vw', 'padding':'15px 5px 15px 5px'}),
     ])
     ]
 )

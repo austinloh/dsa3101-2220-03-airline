@@ -35,7 +35,7 @@ layout = html.Div(children=[
 					id='state_dd',
 					options = [{'label':state, 'value':state}
 								for state in sorted(list(flights.state.dropna().unique()))],
-					style = {'width':'200px', 'margin':'0px auto'}
+					style = {'color': 'black', 'width':'200px', 'margin':'0px auto'}
 				)
 			],
 			style = {
