@@ -100,18 +100,28 @@ sidebar = html.Div(
         ),
         # html.H1("Menu"),
         html.Hr(),
-        html.P(
-            "Visualize US airline data from between January to April 2008"
+        html.H6(
+            "Data is the artist, but interpretation is the brushstroke that creates a masterpiece.",
+            style={'fontSize':'80%', 'padding':'1px 1px 1px 1px'}
         ),
         dbc.Nav(
            [
                dbc.NavLink("Home", href="/", active="exact"),
-               dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
-               dbc.NavLink("2008 Daily Delays Heatmap", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
-               dbc.NavLink("Line Graph Of Of Delays", href=dash.page_registry['pages.line']['path'], active="exact"),
-               dbc.NavLink("2008 Flights", href=dash.page_registry['pages.2008flights']['path'], active="exact"),
-               dbc.NavLink("2011 Flights", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
-               dbc.NavLink("Page 2", href="/page-2", active="exact"),
+
+               #dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
+               #dbc.NavLink("2008 Daily Delays Heatmap", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
+               #dbc.NavLink("Line Graph Of Of Delays", href=dash.page_registry['pages.line']['path'], active="exact"),
+               #dbc.NavLink("2008 Flights", href=dash.page_registry['pages.2008flights']['path'], active="exact"),
+               #dbc.NavLink("2011 Flights", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
+               #dbc.NavLink("Page 2", href="/page-2", active="exact"),
+
+               dbc.NavLink("Arrival Delay Times", href=dash.page_registry['pages.avgdelays']['path'], active="exact"),
+               dbc.NavLink("Heatmap of Daily Delays", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
+               dbc.NavLink("Flight Map", href=dash.page_registry['pages.2012delays']['path'], active="exact"),
+               dbc.NavLink("Breakdown by State", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
+               dbc.NavLink("Tinker With Data", href=dash.page_registry['pages.model']['path'], active="exact"),
+               dbc.NavLink("Credits", href="/page-2", active="exact"),
+
            ],
            vertical=True,
            pills=True,
@@ -166,16 +176,23 @@ def toggle_sidebar(n, nclick):
 def render_page_content(pathname):
    if pathname == "/":
         return dash.page_registry['pages.home']['layout']
-   elif pathname == dash.page_registry['pages.arr_delay']['path']:
-       return dash.page_registry['pages.arr_delay']['layout']
+   elif pathname == dash.page_registry['pages.avgdelays']['path']:
+       return dash.page_registry['pages.avgdelays']['layout']
    elif pathname == dash.page_registry['pages.heatmap']['path']:
        return dash.page_registry['pages.heatmap']['layout']
-   elif pathname == dash.page_registry['pages.line']['path']:
-        return dash.page_registry['pages.line']['layout']
-   elif pathname == dash.page_registry['pages.2008flights']['path']:
-       return dash.page_registry['pages.2008flights']['layout']
+
+   #elif pathname == dash.page_registry['pages.line']['path']:
+   #     return dash.page_registry['pages.line']['layout']
+   #elif pathname == dash.page_registry['pages.2008flights']['path']:
+   #    return dash.page_registry['pages.2008flights']['layout']
+
+   elif pathname == dash.page_registry['pages.2012delays']['path']:
+       return dash.page_registry['pages.2012delays']['layout']
+
    elif pathname == dash.page_registry['pages.2011flights']['path']:
        return dash.page_registry['pages.2011flights']['layout']
+   elif pathname == dash.page_registry['pages.model']['path']:
+       return dash.page_registry['pages.model']['layout']
    elif pathname == "/page-1":
        return html.P("This is the content of page 1. Yay!")
    elif pathname == "/page-2":
