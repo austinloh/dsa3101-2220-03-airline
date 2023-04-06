@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import SelectKBest, chi2, mutual_info_classif
 
-df = pd.read_csv('../../../database/data/2008_data_with_weather.csv')
+df = pd.read_csv('../../database/data/2008_data_with_weather.csv')
 
 #drop features with all NA or irrelevant to training process
 df.drop(['Year', 'DepTime', 'ArrTime', 'FlightNum', 'ActualElapsedTime', 'DepDelay', 'AirTime', \
