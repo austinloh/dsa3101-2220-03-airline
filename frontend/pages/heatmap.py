@@ -32,7 +32,12 @@ arr_fig = calplot(
          y="ArrDelay",
          dark_theme=True,
          years_title=True,
+
+         #end_month=4,
+         #title="2008 Daily Arrival Delays (mins)",
+
          title="Daily Arrival Delays (mins)",
+
          name="Total arrival delay(mins)",
          colorscale="RdBu_r",
          month_lines_width=3,
@@ -43,6 +48,7 @@ dep_fig = calplot(
          dep_df,
          x="Date",
          y="DepDelay",
+         end_month=4,
          dark_theme=True,
          title="Daily Departure Delays (mins)",
          name="Total departure delay(mins)",

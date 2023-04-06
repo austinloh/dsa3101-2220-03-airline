@@ -26,30 +26,31 @@ navbar = dbc.NavbarSimple(
      ],
      brand="Flight Models",
      brand_href="/",
-     color="#D27685",
+     color="#212529",
      dark=True,
      fluid=True,
      links_left=True,
-     sticky='Top'  
+     sticky="top"  
  )
 
 SIDEBAR_STYLE = {
     "position": "fixed",
-    "top": 55,
+    "top": 71,
     "left": 0,
     "bottom": 0,
     "width": "16rem",
     "height": "100%",
+    "position": "fixed",
     "z-index": 1,
     "overflow-x": "hidden",
     "transition": "all 0.5s",
-    "padding": "0rem 0rem",
-    "background-color": "#66347F",
+    "padding": "1rem 1rem",
+    "background-color": "#343a40",
 }
 
 SIDEBAR_HIDDEN = {
     "position": "fixed",
-    "top": 55,
+    "top": 71,
     "left": "-16rem",
     "bottom": 0,
     "width": "16rem",
@@ -57,8 +58,8 @@ SIDEBAR_HIDDEN = {
     "z-index": 1,
     "overflow-x": "hidden",
     "transition": "all 0.5s",
-    "padding": "0rem 0rem",
-    "background-color": "#66347F",
+    "padding": "1rem 1rem",
+    #"background-color": "#66347F",
 }
 
 
@@ -75,15 +76,15 @@ CONTENT_STYLE = {
     "margin-left": "18rem",
     "margin-right": "2rem",
     "padding": "0rem 0rem",
-    #"background-color": "#f8f9fa",
+    "background-color": "#f8f9fa",
 }
 
 CONTENT_STYLE1 = {
     "transition": "margin-left .5s",
-    "margin-left": "0rem",
+    "margin-left": "2rem",
     "margin-right": "0rem",
     "padding": "0rem 0rem",
-    #"background-color": "#f8f9fa",
+    "background-color": "#f8f9fa",
 }
 
 sidebar = html.Div(
@@ -106,12 +107,21 @@ sidebar = html.Div(
         dbc.Nav(
            [
                dbc.NavLink("Home", href="/", active="exact"),
+
+               #dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
+               #dbc.NavLink("2008 Daily Delays Heatmap", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
+               #dbc.NavLink("Line Graph Of Of Delays", href=dash.page_registry['pages.line']['path'], active="exact"),
+               #dbc.NavLink("2008 Flights", href=dash.page_registry['pages.2008flights']['path'], active="exact"),
+               #dbc.NavLink("2011 Flights", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
+               #dbc.NavLink("Page 2", href="/page-2", active="exact"),
+
                dbc.NavLink("Arrival Delay Times", href=dash.page_registry['pages.avgdelays']['path'], active="exact"),
                dbc.NavLink("Heatmap of Daily Delays", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
                dbc.NavLink("Flight Map", href=dash.page_registry['pages.2012delays']['path'], active="exact"),
                dbc.NavLink("Breakdown by State", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
                dbc.NavLink("Tinker With Data", href=dash.page_registry['pages.model']['path'], active="exact"),
                dbc.NavLink("Credits", href="/page-2", active="exact"),
+
            ],
            vertical=True,
            pills=True,
@@ -126,9 +136,10 @@ content = html.Div(id="page-content", style=CONTENT_STYLE, children=[dash.page_c
 app.layout = html.Div([
      dcc.Store(id='side_click'), # added this line
      dcc.Location(id="url"), 
+     sidebar,
      navbar, 
-     sidebar, 
-     content])
+     content,
+     ])
 
 
 @app.callback(
@@ -169,8 +180,15 @@ def render_page_content(pathname):
        return dash.page_registry['pages.avgdelays']['layout']
    elif pathname == dash.page_registry['pages.heatmap']['path']:
        return dash.page_registry['pages.heatmap']['layout']
+
+   #elif pathname == dash.page_registry['pages.line']['path']:
+   #     return dash.page_registry['pages.line']['layout']
+   #elif pathname == dash.page_registry['pages.2008flights']['path']:
+   #    return dash.page_registry['pages.2008flights']['layout']
+
    elif pathname == dash.page_registry['pages.2012delays']['path']:
        return dash.page_registry['pages.2012delays']['layout']
+
    elif pathname == dash.page_registry['pages.2011flights']['path']:
        return dash.page_registry['pages.2011flights']['layout']
    elif pathname == dash.page_registry['pages.model']['path']:
@@ -185,8 +203,8 @@ def render_page_content(pathname):
            html.H1("404: Not found", className="text-danger"),
            html.Hr(),
            html.P(f"The pathname {pathname} was not recognised..."),
-       ],
-       className="p-3 bg-light rounded-3",
+       ]#,
+       #className="p-3 bg-light rounded-3",
    )
 
 if __name__ == '__main__':
