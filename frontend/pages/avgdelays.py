@@ -87,8 +87,8 @@ def update_graph(option_selected):
                          scope = "usa",
                          color = temp_df["AvgArrDelay"],
                          hover_data = ["AvgArrDelay"],
-                         color_continuous_scale = px.colors.sequential.Agsunset,
-                         template = 'plotly_dark'
+                         color_continuous_scale = px.colors.sequential.Sunsetdark,
+                        #  template = 'plotly_dark'
                          )
 
     return container, fig
