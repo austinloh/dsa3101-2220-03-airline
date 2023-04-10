@@ -1,5 +1,6 @@
 import requests
 import json
+import pandas as pd
 
 URL = 'http://127.0.0.1:5000/'
 
@@ -17,6 +18,8 @@ req = requests.get('http://127.0.0.1:5000/api/lime_fi',headers=h1, json=params1)
 # ["TailNum=N956LR",0.012495320364865902],["Month=3",0.012461212222973975],["UniqueCarrier=YV",-0.01192746105881419],\
 # ["CRSArrTime",0.004145908201383367]]\n'
 
+
+
 # Getting feature importance with plots as html?
 h1 = {'Content-type': 'application/json', 'Accept': 'application/json'}
 # Inputs are for columns = ['Month','DayofMonth', 'DayOfWeek', 'CRSDepTime', 'CRSArrTime', 'UniqueCarrier',
@@ -26,6 +29,8 @@ req = requests.get('http://127.0.0.1:5000/api/lime_plot',headers=h1, json=params
 #req.json
 #output is a html string? Need to figure out how to render if using
 #'"<html>\\n  ... ... </html>"\n'
+
+
 
 # FOR XGBOOST
 sample_input = {
@@ -66,8 +71,43 @@ sample_input = {
 }
 
 headers = {"Content-Type": "application/json"}
-
 response = requests.post('http://127.0.0.1:5000/api/xgb_predict', data=json.dumps(sample_input), headers=headers)
-
 print(response.json())
 #Will take extremely long time to run since the model is complexed.
+
+
+
+# FOR GETTING DATA FROM DATABASE
+params1 = {'inputs':'SHOW TABLES;'}
+req = requests.get('http://127.0.0.1:5000/api/database',headers=h1, json=params1)
+req.json()
+
+params1 = {'inputs':'SELECT * FROM flights LIMIT 3;'}
+req = requests.get('http://127.0.0.1:5000/api/database',headers=h1, json=params1)
+columns = ['Year', 'Month', 'DayofMonth', 'DayOfWeek', 'DepTime', 'CRSDepTime', \
+           'ArrTime', 'CRSArrTime', 'UniqueCarrier', 'FlightNum', 'TailNum', \
+           'ActualElapsedTime', 'CRSElapsedTime', 'AirTime', 'ArrDelay', 'DepDelay', \
+           'Origin', 'Dest', 'Distance', 'TaxiIn', 'TaxiOut', 'Cancelled', \
+           'Cancellation', 'Diverted', 'CarrierDelay', 'WeatherDelay', 'NASDelay', \
+           'SecurityDelay', 'LateAircraftDelay']
+df = pd.DataFrame(req.json(), columns = columns)
+df.head()
+
+params1 = {'inputs':'SELECT * FROM carriers LIMIT 3;'}
+columns = ['Code', 'Description']
+req = requests.get('http://127.0.0.1:5000/api/database',headers=h1, json=params1)
+df = pd.DataFrame(req.json(), columns = columns)
+df.head()
+
+params1 = {'inputs':'SELECT * FROM airports LIMIT 3;'}
+columns = ['iata', 'airport', 'city', 'state', 'country', 'latitude', 'longitude']
+req = requests.get('http://127.0.0.1:5000/api/database',headers=h1, json=params1)
+df = pd.DataFrame(req.json(), columns = columns)
+df.head()
+
+params1 = {'inputs':'SELECT * FROM planes WHERE type IS NOT NULL LIMIT 3;'}
+cols = ['tailnum', 'type', 'manufacturer', 'issue_date', 'model', \
+        'status', 'aircraft_type', 'engine_type', 'year']
+req = requests.get('http://127.0.0.1:5000/api/database',headers=h1, json=params1)
+df = pd.DataFrame(req.json(), columns = cols)
+df.head()
