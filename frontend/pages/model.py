@@ -83,9 +83,9 @@ layout = html.Div(children=[
     # html.H2(feature_importance),
     html.Br(),
     html.H1(id='prediction_text', style={'textAlign': 'center'}),
-    html.Div([
-        html.Img(id='prediction_img', style={"width": "70vw", "margin": "0 auto"})
-    ]),
+    # html.Div([
+    #     html.Img(id='prediction_img', style={"width": "70vw", "margin": "0 auto"})
+    # ]),
     html.Br(),
     html.Br(),
     html.H3([html.Strong("Data: where knowledge meets opportunity.")]),
@@ -130,6 +130,9 @@ layout = html.Div(children=[
                 vertical=True
             )
         ])
+    ]),
+    html.Div([
+        html.Img(id='prediction_img', style={"width": "70vw", "margin": "0 auto"})
     ]),
     html.Br(),
     html.Br(),
