@@ -4,7 +4,8 @@
 
 In database directory, check the following are present:
 - data folder (all data obtained from [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7))
-    - data csv files compressed using bz2 
+    - flights data csv files compressed using bz2 
+    - any other data csv files
 - sql-scripts folder
     - CreateTable.sql 
 - Dockerfile
@@ -12,12 +13,14 @@ In database directory, check the following are present:
 - startup.py
 - connectingDB.py
 - requirements.txt
+- weather2008.py
 
-In database directory, run 
+
+To create sql data file from csv in data folder, in database directory, run 
 ```
 python3 startup.py
 ```
-to create sql data file from csv in data folder
+
 
 Next, run
 ```
@@ -39,3 +42,16 @@ Run
 ```
 python3 connectingDB.py
 ```
+
+### Augmenting dataset with weather data
+Would have to decompress *2008.csv.bz2* first. <br>
+Run
+```
+python3 weather2008.py
+```
+This creates a file which contain flights from 2008 and weather data. <br>
+To prevent duplicating of tables, remove *2008.csv.bz2* and *States Climate weather data 2008.csv* <br>
+Note, this would take very long for docker compose up to run due to the large dataset.
+
+### Current state of database
+![](schema.png)

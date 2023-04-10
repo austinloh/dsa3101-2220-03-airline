@@ -1,0 +1,21 @@
+updates from frontend: 
+- interviewed 2 relevant individual, with 1 coming up soon on sat -- 1 sia intern & 1 full time atc for sg airforce, upcoming full time atc for caas 
+- interview details can be found in git, main factors incld weather conditions/ maintenance-related issues/ airport congestion --> which will lead to passengers missing flights
+
+update from backend: 
+- austin: setting up database; might not be able to use full dataset so we can choose 3 years as the more impt ones & then use those
+- chunyuan: modelled delays using decision tree & random forest algo 
+- yida: found external dataset for hdi of us states & weather data of 30 us cities; will map out the correlations between these factors; high correlation in dep_delay and arr_delay 
+
+-------------
+
+backend to do:
+- database & models to determine impt features to focus on <-- produce by wed (22/3) so that frontend can use to make visualisation 
+
+frontend to do: 
+- research more into ATCs (to backup the lack of primary research) 
+- plan how to incorporate frontend models into website (bef wed) 
+- solidify plan by thur (23/3) 
+
+both to do: 
+- come back on fri (24/3) to attempt to do the integration on both ends

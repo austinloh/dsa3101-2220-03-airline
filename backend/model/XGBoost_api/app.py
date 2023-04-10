@@ -7,6 +7,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the XGBoost model
+
 with open("XGBoost_model_no_onehot.pkl", "rb") as f:
     model = pickle.load(f)
 

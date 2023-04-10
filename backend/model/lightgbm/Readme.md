@@ -7,16 +7,28 @@ Feature importance may hence vary across different inputs.
 *simple* directory for data without weather data
 *weather* directory for data with weather data
 
+### Training LightGBM model, feature encoder and LIME explainer
+Change path to data file for training of model in *lightgbm.py* line 9. <br>
+Run
+```
+python3 lightgbm.py
+```
+Trained LightGBM model is in *model.pkl* <br>
+Feature encoder is in *encoder.pkl* <br>
+LIME explainer is in *lime.pkl*
+
+### Viewing feature importance
+
 Line 18 of *output.py* denotes features that need to be inputted.
 Current sample input is on line 26 of *output.py*
 
-### View feature importance as list
+#### View feature importance as list
 Run 
 ```
 python3 output.py
 ```
 
-### View feature importance as html page
+#### View feature importance as html page
 Uncomment line 43 of *output.py*
 Output should look like this for without weather data ![](./simple/sample_plot.png)
 Output should look like this for weather data ![](./weather/sample_plot.png)
