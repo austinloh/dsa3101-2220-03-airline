@@ -10,7 +10,7 @@ layout = html.Div(children=[
     html.Div(children=[
         html.H1('Homepage', style={'textAlign': 'center'}),
         html.Br(), 
-        html.Img(src=pic_link, style={'height':'50%', 'width':'50%'}),
+        html.Img(src=pic_link, style={'height':'50%', 'width':'50%'}, className="center"),
         html.Br(),
         html.H3("Welcome to Flight Models! This is a webpage to help you predict plane delays."),
                 #Use it effectively to ensure safe and efficient operations in the skies.
