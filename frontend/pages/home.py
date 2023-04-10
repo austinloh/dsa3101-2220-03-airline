@@ -8,6 +8,7 @@ pic_link = 'https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=r
 
 layout = html.Div(children=[
     html.Div(children=[
+        html.Br(), 
         html.H1('Homepage', style={'textAlign': 'center'}),
         html.Br(), 
         html.Img(src=pic_link, style={'height':'50%', 'width':'50%'}, className="center"),
@@ -19,6 +20,6 @@ layout = html.Div(children=[
         html.Br(), 
         html.H5("To navigate this page, use the 'Menu' button on the top left corner of the page to display the side navigation bar."),
         html.Br(),
-        html.H5("The side bar consists of different pages that focuses on different features to help you anticipate a delay."),
+        html.H5("The side bar consists of different pages that focuses on different features to help you anticipate a delay. Click on each page to see each visualisation!"),
         html.Br()
     ])])
