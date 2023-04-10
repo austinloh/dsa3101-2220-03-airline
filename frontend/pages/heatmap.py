@@ -80,7 +80,7 @@ layout = html.Div(children=[
 
     html.Br(),
 
-    dcc.Graph(id='my_heatmap', figure={}),
+    dcc.Graph(id='my_heatmap', figure={}, style={'backgroundColor': 'transparent'}),
 
     html.Br(),
     html.Br(),
