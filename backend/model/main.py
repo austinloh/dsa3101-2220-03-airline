@@ -95,13 +95,30 @@ def preprocess_input(input_data):
 @app.route('/api/xgb_predict', methods=['POST'])
 def predict():
     input_data = request.json
-    print("Input data:")
-    print(input_data)
+    #print("Input data:")
+    #print(input_data)
     preprocessed_data = preprocess_input(input_data)
-    print("Preprocessed data:")
-    print(preprocessed_data)
+    #print("Preprocessed data:")
+    #print(preprocessed_data)
     prediction = model.predict(preprocessed_data.reshape(1, -1))
-    print("Model prediction:")
-    print(prediction)
+    #print("Model prediction:")
+    #print(prediction)
     response = {'prediction': int(prediction[0])}
     return jsonify(response)
+
+import mysql.connector
+from sshtunnel import SSHTunnelForwarder
+tunnel = SSHTunnelForwarder(('50.19.153.183', 22), ssh_username='ubuntu', 
+                            ssh_pkey='../database/pem/dsa3101-03.pem', remote_bind_address=('127.0.0.1', 3306))
+tunnel.start()
+conn = mysql.connector.connect(host='127.0.0.1', user='root', password='rootpw', 
+                               port=tunnel.local_bind_port, use_pure=True, database='mydb')
+@app.route('/api/database', methods = ['GET'])
+def db():
+    x = request.get_json()['inputs']
+    cursor = conn.cursor()
+    #change SQL command
+    #change SQL command
+    cursor.execute(x) 
+    result = cursor.fetchall()
+    return jsonify(result)
