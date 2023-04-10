@@ -68,7 +68,7 @@
   --bs-body-bg: #fff;
   --bs-border-width: 1px;
   --bs-border-style: solid;
-  --bs-border-color: #dee2e6;
+  --bs-border-color: #fff;
   --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
   --bs-border-radius: 0.375rem;
   --bs-border-radius-sm: 0.25rem;
@@ -79,7 +79,7 @@
   --bs-link-color: #18bc9c;
   --bs-link-hover-color: #13967d;
   --bs-code-color: #e83e8c;
-  --bs-highlight-bg: #fdebd0;
+  --bs-highlight-bg: #fff;
 }
 
 *,
@@ -309,6 +309,7 @@ figure {
 img,
 svg {
   vertical-align: middle;
+  text-align: center;
 }
 
 table {
@@ -608,6 +609,7 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+  text-align: center;
 }
 
 .img-thumbnail {
@@ -616,6 +618,7 @@ progress {
   border: 1px solid var(--bs-border-color);
   border-radius: 0.375rem;
   max-width: 100%;
+  text-align: center;
   height: auto;
 }
 
