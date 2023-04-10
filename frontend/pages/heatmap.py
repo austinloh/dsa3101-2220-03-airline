@@ -30,16 +30,14 @@ arr_fig = calplot(
          arr_df,
          x="Date",
          y="ArrDelay",
-         dark_theme=True,
+        #  dark_theme=True,
          years_title=True,
-
-         #end_month=4,
-         #title="2008 Daily Arrival Delays (mins)",
-
-         title="Daily Arrival Delays (mins)",
-
+         end_month=4,
+         title="2008 Daily Arrival Delays (mins)",
+        #  title="Daily Arrival Delays (mins)",
          name="Total arrival delay(mins)",
          colorscale="RdBu_r",
+         showscale= True,
          month_lines_width=3,
          month_lines_color="#fff"
 )
@@ -49,10 +47,11 @@ dep_fig = calplot(
          x="Date",
          y="DepDelay",
          end_month=4,
-         dark_theme=True,
-         title="Daily Departure Delays (mins)",
+        #  dark_theme=True,
+         title="2008 Daily Departure Delays (mins)",
          name="Total departure delay(mins)",
          colorscale="RdBu_r",
+         showscale= True,
          month_lines_width=3,
          month_lines_color="#fff"
 )
@@ -80,7 +79,7 @@ layout = html.Div(children=[
 
     html.Br(),
 
-    dcc.Graph(id='my_heatmap', figure={}),
+    dcc.Graph(id='my_heatmap', figure={}, style={'backgroundColor': 'transparent'}),
 
     html.Br(),
     html.Br(),

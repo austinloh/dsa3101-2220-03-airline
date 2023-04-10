@@ -8,8 +8,9 @@ server = app.server
 
 navbar = dbc.NavbarSimple(
      children=[
-        # adding a button for side bar
-         dbc.Button("Menu", outline=True, color="light", className="me-1", id="btn_sidebar"),
+         dbc.Button("Menu", outline=True, color="light", className="me-1", id="btn_sidebar")
+         # adding a button for side bar
+
         # below are establishing the links and how to establish them
         # dbc.NavItem(dbc.NavLink("Home", href="/")),
         # dbc.NavItem(dbc.NavLink("2011 Flights", href="/2011flights")),
@@ -90,19 +91,17 @@ CONTENT_STYLE1 = {
 sidebar = html.Div(
     [
         #html.Img(src="assets/plane_icon.png", height="30px"),
-        dbc.Row(
-            [
-                dbc.Col(html.A([html.Img(src="assets/plane_icon.png", height="50px")], 
-                               href="/")), #clicking on icon returns to homepage too
-                dbc.Col(html.H1("Menu")),
-            ],
+        dbc.Row([
+            dbc.Col(html.A([html.Img(src="assets/plane_icon.png", height="50px")], href="/")), 
+            #clicking on icon returns to homepage too
+            dbc.Col(html.H1("Menu"))],
         align="center",     
+        style={'color':"#fff"}
         ),
-        # html.H1("Menu"),
         html.Hr(),
         html.H6(
             "Data is the artist, but interpretation is the brushstroke that creates a masterpiece.",
-            style={'fontSize':'80%', 'padding':'1px 1px 1px 1px'}
+            style={'fontSize':'80%', 'padding':'1px 1px 1px 1px', 'color':"#fff"}
         ),
         dbc.Nav(
            [
@@ -138,8 +137,9 @@ app.layout = html.Div([
      dcc.Location(id="url"), 
      sidebar,
      navbar, 
-     content,
+     content
      ])
+    # , style={'backgroundColor':'blue'}
 
 
 @app.callback(

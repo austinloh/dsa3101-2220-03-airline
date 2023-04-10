@@ -8,7 +8,7 @@ import plotly.express as px
 
 import requests
 import json
-from IPython.core.display import HTML
+#from IPython.core.display import HTML
 
 # app = dash.Dash(__name__)
 dash.register_page(__name__)
