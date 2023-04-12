@@ -1,8 +1,9 @@
 import pickle
+
 import numpy as np
-from flask import Flask, request, jsonify
-import xgboost as xgb
 import pandas as pd
+import xgboost as xgb
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ with open("XGBoost_model_no_onehot.pkl", "rb") as f:
 with open("no_onehot_encoder_dictionary.pkl", "rb") as f:
     encoding_dict = pickle.load(f)
 
+
 def transform_with_fallback(encoder, column_data):
     try:
         return encoder.transform(column_data)
@@ -21,19 +23,28 @@ def transform_with_fallback(encoder, column_data):
         print(f"Warning: {str(e)}")
         return -1
 
+
 # Define a function to preprocess the input data
 def preprocess_input(input_data):
     input_df = pd.DataFrame(input_data, index=[0])
 
     # Convert categorical columns to category data type
-    cat_cols = ['UniqueCarrier', 'TailNum', 'Origin', 'Dest', 'origin_state', 'conditions', 'description']
+    cat_cols = [
+        "UniqueCarrier",
+        "TailNum",
+        "Origin",
+        "Dest",
+        "origin_state",
+        "conditions",
+        "description",
+    ]
     for col in cat_cols:
-        input_df[col] = input_df[col].astype('category')
+        input_df[col] = input_df[col].astype("category")
 
     # Replace missing categorical values with 'unknown'
-    for col in input_df.select_dtypes(include=['category']):
-        input_df[col] = input_df[col].cat.add_categories(['unknown'])
-        input_df[col].fillna('unknown', inplace=True)
+    for col in input_df.select_dtypes(include=["category"]):
+        input_df[col] = input_df[col].cat.add_categories(["unknown"])
+        input_df[col].fillna("unknown", inplace=True)
 
     # Replace missing numeric values with mean of that column
     for col in input_df.select_dtypes(include=[np.number]):
@@ -50,7 +61,7 @@ def preprocess_input(input_data):
     return input_df.values[0]
 
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
     input_data = request.json
     print("Input data:")
@@ -61,8 +72,9 @@ def predict():
     prediction = model.predict(preprocessed_data.reshape(1, -1))
     print("Model prediction:")
     print(prediction)
-    response = {'prediction': int(prediction[0])}
+    response = {"prediction": int(prediction[0])}
     return jsonify(response)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)

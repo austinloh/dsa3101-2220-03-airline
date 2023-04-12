@@ -1,34 +1,34 @@
 import dash_bootstrap_components as dbc
-from dash import Dash, html, dcc, Output, Input
+from dash import Dash, Input, Output, dcc, html
 
-# call 
+# call
 # from apps import navigation
 # for every page
 
 navbar = dbc.NavbarSimple(
-     children=[
+    children=[
         # below are establishing the links and how to establish them
-         dbc.NavItem(dbc.NavLink("Home", href="/")),
-         dbc.NavItem(dbc.NavLink("2011 Flights", href="/2011flights")),
-	     dbc.NavItem(dbc.NavLink("2008 Flights", href="/2008flights")),
-         dbc.DropdownMenu( # an option to add drop down links 
-             children=[
-                 dbc.DropdownMenuItem("More pages", header=True),
-                 dbc.DropdownMenuItem("Model Showcase", href="/showcase")
-             ],
-             nav=True,
-             in_navbar=True,
-             label="More",
-         ),
-     ],
-     brand="Flight Models",
-     brand_href="/",
-     color="primary",
-     dark=True,
-     fluid=True,
-     links_left=True,
-     sticky='Top'  
- )
+        dbc.NavItem(dbc.NavLink("Home", href="/")),
+        dbc.NavItem(dbc.NavLink("2011 Flights", href="/2011flights")),
+        dbc.NavItem(dbc.NavLink("2008 Flights", href="/2008flights")),
+        dbc.DropdownMenu(  # an option to add drop down links
+            children=[
+                dbc.DropdownMenuItem("More pages", header=True),
+                dbc.DropdownMenuItem("Model Showcase", href="/showcase"),
+            ],
+            nav=True,
+            in_navbar=True,
+            label="More",
+        ),
+    ],
+    brand="Flight Models",
+    brand_href="/",
+    color="primary",
+    dark=True,
+    fluid=True,
+    links_left=True,
+    sticky="Top",
+)
 
 
 SIDEBAR_STYLE = {
@@ -54,18 +54,19 @@ sidebar = html.Div(
         # html.Img(src="assets/plane_icon.png", height="30px"),
         dbc.Row(
             [
-                dbc.Col(html.A([html.Img(src="assets/plane_icon.png", height="50px")], 
-                               href="/")), #clicking on icon returns to homepage too
+                dbc.Col(
+                    html.A(
+                        [html.Img(src="assets/plane_icon.png", height="50px")], href="/"
+                    )
+                ),  # clicking on icon returns to homepage too
                 dbc.Col(html.H1("Menu")),
             ],
-        align="center",     
+            align="center",
         ),
         # html.H1("Menu"),
         html.Hr(),
-        html.P(
-            "Visualize US airline data from between January to April 2008"
-        )#,
-        #dbc.Nav(
+        html.P("Visualize US airline data from between January to April 2008")  # ,
+        # dbc.Nav(
         #    [
         #        dbc.NavLink("Home", href="/", active="exact"),
         #        dbc.NavLink("Average Arrival Delays per Month", href=dash.page_registry['pages.arr_delay']['path'], active="exact"),
@@ -74,8 +75,7 @@ sidebar = html.Div(
         #    ],
         #    vertical=True,
         #    pills=True,
-        #),
+        # ),
     ],
     style=SIDEBAR_STYLE,
 )
-
