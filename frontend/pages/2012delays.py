@@ -17,7 +17,7 @@ import plotly.graph_objects as go # or plotly.express as px
 # fig.add_trace( ... )
 # fig.update_layout( ... )
 
-dash.register_page(__name__)
+# dash.register_page(__name__)
 
 #df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
 #df = pd.read_csv(df_zip.open("2008_data.csv"))

@@ -12,4 +12,7 @@ flask
 # pickle
 lime
 numpy
-xgboost
+# xgboost
+# mysql
+# mysqlclient
+# mysql-connector-python

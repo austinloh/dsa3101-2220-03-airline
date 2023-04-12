@@ -73,7 +73,7 @@ def generate_pred(DayOfWeek, CRSDepTime, origin_state):
         input_dict['CRSDepTime'] = CRSDepTime
         input_dict['origin_state'] = origin_state
         # '0' for no delay, '1' for delay
-        return str(requests.post('http://127.0.0.1:5001/predict', data=json.dumps(input_dict), headers=headers).json()['prediction'])
+        return str(requests.post('http://model:5000/predict', data=json.dumps(input_dict), headers=headers).json()['prediction']) # http://127.0.0.1:5001/predict
     return '2' # '2' for no full user input yet
 
 

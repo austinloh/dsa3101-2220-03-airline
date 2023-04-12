@@ -1,4 +1,4 @@
-# app.py
+# main.py
 import dash
 from dash import Dash, html, dcc, Output, Input, State
 import dash_bootstrap_components as dbc
@@ -116,7 +116,7 @@ sidebar = html.Div(
 
                dbc.NavLink("Arrival Delay Times", href=dash.page_registry['pages.avgdelays']['path'], active="exact"),
                dbc.NavLink("Heatmap of Daily Delays", href=dash.page_registry['pages.heatmap']['path'], active="exact"),
-               dbc.NavLink("Flight Map", href=dash.page_registry['pages.2012delays']['path'], active="exact"),
+            #    dbc.NavLink("Flight Map", href=dash.page_registry['pages.2012delays']['path'], active="exact"),
                dbc.NavLink("Breakdown by State", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
                dbc.NavLink("Tinker With Data", href=dash.page_registry['pages.model']['path'], active="exact"),
             #    dbc.NavLink("Credits", href="/page-2", active="exact"),
@@ -186,8 +186,8 @@ def render_page_content(pathname):
    #elif pathname == dash.page_registry['pages.2008flights']['path']:
    #    return dash.page_registry['pages.2008flights']['layout']
 
-   elif pathname == dash.page_registry['pages.2012delays']['path']:
-       return dash.page_registry['pages.2012delays']['layout']
+#    elif pathname == dash.page_registry['pages.2012delays']['path']:
+#        return dash.page_registry['pages.2012delays']['layout']
 
    elif pathname == dash.page_registry['pages.2011flights']['path']:
        return dash.page_registry['pages.2011flights']['layout']
