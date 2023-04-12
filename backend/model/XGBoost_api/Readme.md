@@ -1,58 +1,71 @@
-# Flight Delay Prediction API
+## XGBoost Flight Delay Prediction API
 
-This API uses an XGBoost model to predict flight delays based on various features such as date, time, carrier, origin, destination, weather conditions, and more. The model has been trained on historical flight and weather data.
+This API is used to predict the likelihood of a flight being delayed. It uses an XGBoost model to make the prediction, based on various input features such as the airline carrier, origin and destination airports, and weather conditions.
 
-## Setup
+### Requirements
 
-1. Install the required Python packages:
+To use this API, you need the following requirements:
 
-```bash
-pip install flask xgboost pandas scikit-learn
+- Python 3.7 or higher
+- Flask
+- NumPy
+- Pandas
+- Scikit-learn
+- XGBoost
 
-2.Run the API server:
+### Usage
 
-python app.py
+1. Clone this repository to your local machine.
+2. Install the required libraries by running `pip install -r requirements.txt`.
+3. Run the Flask app by executing `python app.py`.
+4. Send a POST request to the `/predict` endpoint with a JSON payload containing the input data. An example payload is provided below:
 
-The API will be available at http://127.0.0.1:5000/.
+```json
+{
+    "Year": 2006,
+    "Month": 1,
+    "DayofMonth": 11,
+    "DayOfWeek": 3,
+    "CRSDepTime": 1053,
+    "CRSArrTime": 1318,
+    "UniqueCarrier": "US",
+    "TailNum": "N834AW",
+    "CRSElapsedTime": 265.0,
+    "Origin": "ATL",
+    "Dest": "PHX",
+    "Distance": 1587,
+    "origin_state": "GA",
+    "tempmax": 2.1,
+    "tempmin": -4.6,
+    "temp": -0.1,
+    "feelslikemax": 1.3,
+    "feelslikemin": -4.6,
+    "feelslike": -0.6,
+    "dew": -0.9,
+    "humidity": 94.6,
+    "precip": 1.573,
+    "precipcover": 8.33,
+    "snow": 0.0,
+    "snowdepth": 0.6,
+    "windgust": 57.685756,
+    "windspeed": 10.5,
+    "winddir": 90.0,
+    "sealevelpressure": 1030.7,
+    "cloudcover": 98.5,
+    "visibility": 6.6,
+    "moonphase": 0.39,
+    "conditions": "Snow, Rain, Overcast",
+    "description": "Cloudy skies throughout the day with rain or snow."
+}
 
-Usage
 
-Send a POST request to the /xgb_predict endpoint with a JSON payload containing the input data. The input data should include the following fields:
+5. The API will return a JSON response with the predicted class label as an integer, either 0 or 1:
 
-Year (int64)
-Month (int64)
-DayofMonth (int64)
-DayOfWeek (int64)
-CRSDepTime (int64)
-CRSArrTime (int64)
-UniqueCarrier (string)
-TailNum (string)
-CRSElapsedTime (float64)
-Origin (string)
-Dest (string)
-Distance (int64)
-origin_state (string)
-tempmax (float64)
-tempmin (float64)
-temp (float64)
-feelslikemax (float64)
-feelslikemin (float64)
-feelslike (float64)
-dew (float64)
-humidity (float64)
-precip (float64)
-precipcover (float64)
-snow (float64)
-snowdepth (float64)
-windgust (float64)
-windspeed (float64)
-winddir (float64)
-sealevelpressure (float64)
-cloudcover (float64)
-visibility (float64)
-moonphase (float64)
-conditions (string)
-description (string)
+    {
+        'prediction': 0
+    }
 
-It takes extremely long time to run, maybe because of one-hot encode.
-
+### Limitations
+- The input data must have the same structure as the example payload above.
+- The API only works for flights within the United States, as the origin state column is required.
+- The model used by the API was trained on flight data from 2006, so it may not be accurate for more recent years.
