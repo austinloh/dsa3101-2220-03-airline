@@ -119,7 +119,7 @@ sidebar = html.Div(
                dbc.NavLink("Flight Map", href=dash.page_registry['pages.2012delays']['path'], active="exact"),
                dbc.NavLink("Breakdown by State", href=dash.page_registry['pages.2011flights']['path'], active="exact"),
                dbc.NavLink("Tinker With Data", href=dash.page_registry['pages.model']['path'], active="exact"),
-               dbc.NavLink("Credits", href="/page-2", active="exact"),
+            #    dbc.NavLink("Credits", href="/page-2", active="exact"),
 
            ],
            vertical=True,
@@ -193,10 +193,10 @@ def render_page_content(pathname):
        return dash.page_registry['pages.2011flights']['layout']
    elif pathname == dash.page_registry['pages.model']['path']:
        return dash.page_registry['pages.model']['layout']
-   elif pathname == "/page-1":
-       return html.P("This is the content of page 1. Yay!")
-   elif pathname == "/page-2":
-       return html.P("Oh cool, this is page 2!")
+#    elif pathname == "/page-1":
+#        return html.P("This is the content of page 1. Yay!")
+#    elif pathname == "/page-2":
+#        return html.P("Oh cool, this is page 2!")
    # If the user tries to reach a different page, return a 404 message
    return html.Div(
        [

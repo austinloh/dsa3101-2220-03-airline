@@ -38,6 +38,8 @@ layout = html.Div([
     html.P("Hover over the visualization to see the CRSDepTime and corresponding average delay for that timing"),
     html.P("Example 1: (440, 76) means at 4:40 am, the average delay is 76 minutes."),
     html.P("Example 2: (1645, 25) means at 4:45 pm, the average delay is 25 minutes."),
+    html.P("You may notice some flat lines that occur over regular intervals, that is due to time not having minutes \
+           between 60 and 99, as 24 hour time jumps from XX59 to XX00."),
 
     html.Br(),
 
