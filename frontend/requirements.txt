@@ -5,14 +5,8 @@ plotly_calplot
 plotly.express
 dash
 dash_bootstrap_components
-# json
 requests
 ipython
 flask
-# pickle
 lime
 numpy
-# xgboost
-# mysql
-# mysqlclient
-# mysql-connector-python

@@ -8,13 +8,12 @@ import dash_bootstrap_components as dbc
 import zipfile
 
 dash.register_page(__name__)
-# line = Dash(__name__)
 
-# df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
+#-------- Importing and pre processing of data ---------
+
 df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
 df = pd.read_csv(df_zip.open("2008_data.csv"))
 
-#-------- Importing and pre processing of data ---------
 # Get all non-cancelled flights
 df = df.loc[df['Cancelled']==0, ["CRSDepTime", "ArrDelay", "DepDelay"]]
 df["ArrDelay"] = df["ArrDelay"].fillna(0)
@@ -29,6 +28,7 @@ dep_df = dep_df.groupby(["CRSDepTime"])["DepDelay"].mean().to_frame().reset_inde
 dep_df = dep_df.drop_duplicates()
 
 #--------- App layout ---------------
+
 layout = html.Div([
 
     html.H1("Average Delays With Scheduled Departure Timings (24 hour format)"),
@@ -95,6 +95,3 @@ def update_graph(option_selected):
                    xaxis_title='CRSDepTime (in 24 hour Format)',
                    yaxis_title='Delay (in minutes)')
     return [fig] 
-
-# if __name__ == '__main__':
-#     line.run_server(debug=True)

@@ -1,4 +1,6 @@
 # Visualizing 2008 delays in heatmap
+
+# Import required packages
 import pandas as pd
 import dash
 from dash import Dash, html, dcc, Input, Output, callback
@@ -9,13 +11,12 @@ import plotly.figure_factory as ff
 import zipfile
 
 dash.register_page(__name__)
-# heatmap = Dash(__name__)
 
-# df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
+#------ Importing and pre processing of data -------------
+
 df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
 df = pd.read_csv(df_zip.open("2008_data.csv"))
 
-#------ importing and pre processing of data -------------
 df = df.loc[df['Cancelled']==0, ["Year", "Month", "DayofMonth", "ArrDelay", "DepDelay"]]
 df = df.rename(columns={"DayofMonth":"Day"})
 df["Date"]=pd.to_datetime(df[["Year", "Month", "Day"]])
@@ -30,11 +31,9 @@ arr_fig = calplot(
          arr_df,
          x="Date",
          y="ArrDelay",
-        #  dark_theme=True,
          years_title=True,
          end_month=4,
          title="2008 Daily Arrival Delays (mins)",
-        #  title="Daily Arrival Delays (mins)",
          name="Total arrival delay(mins)",
          colorscale="amp",
          showscale= True,
@@ -47,7 +46,6 @@ dep_fig = calplot(
          x="Date",
          y="DepDelay",
          end_month=4,
-        #  dark_theme=True,
         years_title=True,
          title="2008 Daily Departure Delays (mins)",
          name="Total departure delay(mins)",
@@ -58,6 +56,7 @@ dep_fig = calplot(
 )
 
 #------- App layout -------------
+
 layout = html.Div(children=[
     html.H1("Heatmap of US Flight Delays by Day", style={'text-align':'center'}),
 
@@ -93,7 +92,6 @@ layout = html.Div(children=[
     html.Br(),
     html.H6([('Data taken from: '), html.Em('January - April 2008')], style={'fontSize':'70%', 'textAlign': 'center'})
 
-
 ])
 
 @callback(
@@ -106,6 +104,3 @@ def update_graph(option_selected):
         return [arr_fig]
     else:
         return [dep_fig]
-
-# if __name__ == '__main__':
-#     app.run_server(debug=False)

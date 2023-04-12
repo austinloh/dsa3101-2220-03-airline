@@ -1,7 +1,8 @@
-# Visualizing arrival delays in 2008
+# VISUALIZING ARRIVAL DELAYS IN 2008
+
+# Import required packages
 import pandas as pd
 import plotly.express as px
-#import plotly.graph_objects as go
 import dash
 from dash import Dash, html, dcc, Input, Output, callback
 import dash_bootstrap_components as dbc
@@ -9,23 +10,23 @@ import zipfile
 
 dash.register_page(__name__)
 
+#------ importing and pre processing of data -------------
+
 df_zip = zipfile.ZipFile("data/2008_data.csv.zip")
 df = pd.read_csv(df_zip.open("2008_data.csv"))
 airports_df = pd.read_csv("data/airports.csv")
-
-#------ importing and pre processing of data -------------
 
 airports_df = airports_df.loc[:, ["iata","airport","lat","long"]].sort_values(by="iata")
 
 # Using only non-cancelled flights data
 month_delay_df = df.loc[df["Cancelled"] == 0, ["Month","ArrDelay","Dest"]]
 month_delay_df = month_delay_df.rename(columns={"Dest":"iata"})
+
 # Average arrival delay (mins) for each arrival destination each month
 month_delay_df["AvgArrDelay"] = month_delay_df.groupby(["iata","Month"])["ArrDelay"].transform("mean")
 month_delay_df = month_delay_df.loc[:, ["iata","Month","AvgArrDelay"]].drop_duplicates().sort_values(by=["iata","Month"])
 
 month_airports_df = pd.merge(month_delay_df, airports_df, on="iata") 
-#After merging, 9 rows were lost, not sure why, could be no record of iata code
 
 #------- App layout ----------
 
@@ -43,7 +44,6 @@ layout = html.Div(children=[
                 multi=False,
                 value=1,
                 style={'color': 'black', 'width':'300px', 'margin':'0px auto'}
-                # className="dropdown"
                 ),
     
     html.Br(),
@@ -61,7 +61,8 @@ layout = html.Div(children=[
 
 ], className="container", style={'backgroundColor': 'lightpurple'})
 
-# ----- Connect Plotly graphs with Dash Components -----
+# ----- Interactivity with Dash Components -----
+
 @callback(
     [Output(component_id='output_container', component_property='children'),
     Output(component_id='my_map', component_property='figure')],
@@ -82,17 +83,11 @@ def update_graph(option_selected):
     fig = px.scatter_geo(data_frame = temp_df, 
                          lat = temp_df["lat"], 
                          lon = temp_df["long"], 
-                        #  locationmode = 'USA-states',
                          hover_name = temp_df["airport"],
                          scope = "usa",
                          color = temp_df["AvgArrDelay"],
                          hover_data = ["AvgArrDelay"],
                          color_continuous_scale = px.colors.sequential.Sunsetdark,
-                        #  template = 'plotly_dark'
                          )
 
     return container, fig
-
-# ---------------------------------------
-# if __name__ == '__main__':
-#     app.run_server(debug=True)

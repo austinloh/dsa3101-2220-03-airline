@@ -1,8 +1,5 @@
 FROM python:3.10.6-slim-buster
 
-## Add Python script, requirements file and templates folder to /app 
-## directory on the image:
-
 WORKDIR /frontend
 
 COPY main.py main.py
