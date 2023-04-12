@@ -5,3 +5,6 @@ scikit-learn
 lime
 flask
 xgboost
+dill
+sshtunnel
+mysql

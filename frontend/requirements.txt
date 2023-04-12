@@ -5,11 +5,8 @@ plotly_calplot
 plotly.express
 dash
 dash_bootstrap_components
-
 requests
 ipython
 flask
-# pickle
 lime
 numpy
-xgboost

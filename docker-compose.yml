@@ -1,11 +1,13 @@
+version: "1"
 services:
   web:
     build: ./frontend
-
+    ports:
+      - "8000:5000"
     depends_on:
-      - api
+      - model
 
-  api:
-    build: ./backend/model
+  model:
+    build: ./backend/model/XGBoost_api_no_onehot
     ports: 
-      - "5000:5000" 
+      - "5000:5000"
