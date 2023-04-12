@@ -48,6 +48,7 @@ dep_fig = calplot(
          y="DepDelay",
          end_month=4,
         #  dark_theme=True,
+        years_title=True,
          title="2008 Daily Departure Delays (mins)",
          name="Total departure delay(mins)",
          colorscale="amp",
