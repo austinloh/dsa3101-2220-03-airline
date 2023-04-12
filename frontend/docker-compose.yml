@@ -4,3 +4,7 @@ services:
     build: .
     ports:
       - "8000:5000"
+  xgboost-model:
+    build: ./apps
+    ports:
+      - "5001:5000"

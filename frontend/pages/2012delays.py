@@ -52,7 +52,7 @@ dtypes = {'YEAR': np.int16, 'MONTH': np.int16, 'DAY_OF_MONTH': np.int16, 'DAY_OF
 'WEATHER_DELAY':np.float16, 'NAS_DELAY':np.float16, 'SECURITY_DELAY':np.float16, 'LATE_AIRCRAFT_DELAY':np.float16
 }
 
-data = pd.read_csv("./airOT201201.csv", dtype = dtypes)#, parse_dates=parse_dates)
+data = pd.read_csv("data/airOT201201.csv", dtype = dtypes)#, parse_dates=parse_dates)
 
 plt.plot(data['FL_DATE'], data['LATE_AIRCRAFT_DELAY'])
 
@@ -61,7 +61,7 @@ by_date = data.groupby('FL_DATE').count().reset_index()
 plt.figure(figsize=(16,10))
 plt.plot(by_date['FL_DATE'], by_date['LATE_AIRCRAFT_DELAY'])
 
-coordinates = pd.read_csv('./2011_february_us_airport_traffic.csv')
+coordinates = pd.read_csv('data/2011_february_us_airport_traffic.csv')
 
 data2 = data[['FL_DATE', 'DEST', 'LATE_AIRCRAFT_DELAY']]
 data2.head()

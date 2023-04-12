@@ -11,7 +11,7 @@ from dash import Input, Output, callback
 
 dash.register_page(__name__)
 
-flights = pd.read_csv("2011_february_us_airport_traffic.csv")
+flights = pd.read_csv("data/2011_february_us_airport_traffic.csv")
 #flights = flights.groupby(['state'])['cnt'].agg('sum').reset_index(name='Total Flight Count')
 #flights_bar = px.bar(data_frame=flights, x='Total Flight Count', y='state', orientation='h', title='Total Flights by State')
 
