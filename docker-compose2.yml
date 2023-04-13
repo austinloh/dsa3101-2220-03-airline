@@ -1,0 +1,13 @@
+version: "1"
+services:
+  web:
+    build: ./frontend
+    ports:
+      - "8000:5000"
+    depends_on:
+      - model
+
+  model:
+    build: ./backend/model/
+    ports: 
+      - "5000:5000"
