@@ -92,7 +92,7 @@ def preprocess_input(input_data):
     return input_df.values[0]
 
 
-@app.route('/api/xgb_predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     input_data = request.json
     #print("Input data:")
