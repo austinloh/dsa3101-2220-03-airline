@@ -1,5 +1,0 @@
-# pickle
-numpy
-xgboost
-flask
-pandas
