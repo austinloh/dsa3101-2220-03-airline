@@ -10,7 +10,7 @@ export FLASK_APP=main
 flask run
 ```
 
-### Running on docker (not tested)
+### Running on docker
 
 Run:
 ```
@@ -22,10 +22,10 @@ docker run api
 
 ### Calling api
 
-For now, only 2 endpoints set up <br>
+For now, only 3 endpoints set up <br>
 - http://127.0.0.1:5000/api/lime_fi
 - http://127.0.0.1:5000/api/lime_plot
-- http://127.0.0.1:5000/api/xgb_predict
+- http://127.0.0.1:5000/predict
 
 Example usage are shown in *callingAPI.py*
 
@@ -56,3 +56,6 @@ Example usage are shown in *callingAPI.py*
 
 6. XGBoost
 ![](XGBoost/XGBoost_importance_ranking.png)
+
+### Replicating Results
+*README.md* files are located in individual model folders with instruction to replicate results. (Only lightgbm and StatisticalTest)
