@@ -83,7 +83,6 @@ def update_plot(selection):
         flights2.groupby(["city"])["cnt"]
         .agg("sum")
         .reset_index(name="Total Flight Count")
-        #.sort_values(by=["cnt"])
     )
     flights_bar = px.bar(
         title=f"Flights in {filter} in Feb 2011",
