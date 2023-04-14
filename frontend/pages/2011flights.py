@@ -4,6 +4,7 @@
 import dash
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dash import Input, Output, callback, dcc, html
 
 dash.register_page(__name__)
@@ -82,6 +83,7 @@ def update_plot(selection):
         flights2.groupby(["city"])["cnt"]
         .agg("sum")
         .reset_index(name="Total Flight Count")
+        #.sort_values(by=["cnt"])
     )
     flights_bar = px.bar(
         title=f"Flights in {filter} in Feb 2011",
@@ -90,5 +92,5 @@ def update_plot(selection):
         y="city",
         orientation="h",
         color="city",
-    )
+    ).update_yaxes(categoryorder='total ascending')
     return flights_bar
