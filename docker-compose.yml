@@ -8,6 +8,6 @@ services:
       - model
 
   model:
-    build: ./backend/model/XGBoost_api_no_onehot
+    build: ./backend/model/
     ports: 
       - "5000:5000"
