@@ -30,6 +30,10 @@ layout = html.Div(
                 ),
                 html.Br(),
                 html.H5(
+                    "The visualizations used in our web pages were selected based on the top few most significant factors of delay such as CRS departure time, day of month and more, identified by our backend team's models."
+                ),
+                html.Br(),
+                html.H5(
                     "To navigate this page, use the 'Menu' button on the top left corner of the page to display the side navigation bar."
                 ),
                 html.Br(),
