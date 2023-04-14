@@ -16,5 +16,5 @@ This directory contains the subfolders such as `assets`, `data` and `pages` need
 
 The `Dockerfile` and `requirements.txt` required for the frontend container to be set up using `docker compose up` in the [root directory](https://github.com/austinloh/dsa3101-2220-03-airline "03 Airline Repository") can also be found here.
 
-Minutes for both frontend and backend combined meetings are located in the `minutes` folder while records of interviews and research can be found in the `interviews` folder.
+Minutes for both frontend and backend combined meetings are located in the [minutes folder](https://github.com/austinloh/dsa3101-2220-03-airline/minutes "Project Minutes") while records of interviews and research can be found in the [interviews folder](https://github.com/austinloh/dsa3101-2220-03-airline/frontend/interviews "Interview Records").
 
