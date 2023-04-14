@@ -14,17 +14,17 @@
 
 ## Running
 Using **Docker** <br>
-1. Setting up frontend & backend
-```
-docker compose up -f docker-compose-full.yml
-```
-Note that database itself takes > 24 hours to set up. <br>
-So it is recommended to use the pre-populated database on AWS and use the 2nd method of setting up.
-
-2. Setting Up frontend & backend without database
+1. Setting up frontend & backend without database
 ```
 docker compose up
 ```
+
+2. Setting Up frontend & backend with database
+```
+docker compose -f docker-compose-full.yml up
+```
+Note that database itself takes > 24 hours to set up. <br>
+So it is recommended to use the pre-populated database on AWS and use the 1st method of setting up.
 
 ## Setting up database by itself
 Navigate to *backend/model/* and follow instructions in *README.md*

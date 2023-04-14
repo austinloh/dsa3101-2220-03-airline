@@ -1,27 +1,5 @@
 ## **README for frontend**
-Before running `docker compose up` you should have at least these in your current directory:
-```
-.
-├── assets
-|   ├── plane_icon.png
-│   └── style.css
-├── data
-|   ├── 2008_data_csv.zip
-|   └── airports.csv
-├── pages
-|   ├── home.py
-|   ├── 2008flights.py
-|   ├── 2011flights.py
-|   └── arr_delay.py
-├── app.py
-├── docker-compose.yml
-├── Dockerfile
-├── README.md
-└── requirements.txt
-```
-### **To run**
-```
-docker compose up
-```
-You should now have the container running and access the webpage on localhost:8000. 
+This directory contains the subfolders such as assets, data and pages needed for the frontend web application main.py, along with other subfolders for organising this directory. The Dockerfile and requirements.txt required for the frontend container to be set up using `docker compose up` in the [main directory](https://github.com/austinloh/dsa3101-2220-03-airline "03 Airline Repository") can also be found here.
+
+Minutes for both frontend and backend combined meetings are located in the minutes folder while records of interviews and research can be found in the interviews folder.
 
