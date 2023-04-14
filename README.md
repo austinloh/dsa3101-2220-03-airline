@@ -16,7 +16,7 @@
 Using **Docker** <br>
 1. Setting up frontend & backend without database
 ```
-docker compose up -f docker-compose-full.yml
+docker compose up
 ```
 
 2. Setting Up frontend & backend without database
