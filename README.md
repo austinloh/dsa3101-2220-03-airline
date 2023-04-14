@@ -4,9 +4,13 @@
 ```
 .
 ├── backend
-│   ├── database 
-│   └── model      
+│   ├── database
+│   └── model
 ├── frontend
+│   ├── assets
+│   ├── data
+│   ├── interviews
+│   └── pages
 ├── docker-compose-full.yml
 ├── docker-compose.yml
 └── README.md
