@@ -7,10 +7,7 @@ predictors = pickle.load(open('predictors.pkl', 'rb'))
 # Create a series containing feature importances from the model and feature names from the training data
 feature_importances = pd.Series(rf.feature_importances_, index=predictors).sort_values(ascending=False)
 
-# Plot a simple bar chart
-# feature_importances[:10].plot.bar();
-plt.figure(figsize=(20,5))
-
-for i in range(3):
-  plt.subplot(1,3,i+1)
-  feature_importances[10*i:10*(i+1)].plot.bar(ylim=(0,0.1))
+# Plot a simple bar chart and save it as jpg file
+feature_plot = feature_importances[0:20].plot.bar()
+fig = feature_plot.get_figure()
+fig.savefig('rf_feature_importance.jpg', dpi=300, bbox_inches='tight')

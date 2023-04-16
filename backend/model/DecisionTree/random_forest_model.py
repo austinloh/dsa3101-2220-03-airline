@@ -33,7 +33,7 @@ X_train, X_test, y_train, y_test = train_test_split(data, y, train_size=0.8, ran
 predictors = list(X_train.columns.values)
 
 
-rf = RandomForestClassifier(n_estimators=round(len(predictors)/3), criterion="entropy", max_depth = 4)
+rf = RandomForestClassifier(n_estimators=round(len(predictors)/3), criterion="entropy", max_depth = 20)
 rf.fit(X_train, y_train)
 
 
