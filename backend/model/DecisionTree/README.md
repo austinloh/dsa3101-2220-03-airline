@@ -23,7 +23,7 @@ Running *random_forest_model.py* will generate two files:
 The important variables are retrieved from random forest model. 20 important variables are shown in the plot.
 
 Running *important_variables.py* will generate one plot *rf_feature_importance.jpg*: 
-![](./rf_feature_importance.png)
+![](./rf_feature_importance.jpg)
 
 ### Limitations
 Accuracy of random forest model is around 0.61 which is not very high.
