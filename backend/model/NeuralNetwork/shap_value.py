@@ -1,6 +1,7 @@
 import shap
 import pickle
 import pandas as pd
+import matplotlib.pyplot as plt
 
 model = pickle.load(open('neural_network_model.pkl', 'rb'))
 mean_df = pd.read_csv('train_mean.csv')
@@ -9,12 +10,22 @@ explainer = shap.KernelExplainer(model = model.predict, data = mean_df, link = "
 
 
 # Input must contains:
-# ['Month', 'DayofMonth', 'DayOfWeek', 'CRSDepTime', 'CRSArrTime',
-#        'UniqueCarrier', 'CRSElapsedTime', 'ArrDelay', 'Origin', 'Dest',
-#        'Distance', 'tempmax', 'tempmin', 'temp', 'feelslikemax',
-#        'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', 'precipprob',
-#        'precipcover', 'snow', 'snowdepth', 'windspeed', 'winddir',
-#        'sealevelpressure', 'cloudcover', 'visibility', 'conditions']
+columns = ['Month', 'DayofMonth', 'DayOfWeek', 'CRSDepTime', 'CRSArrTime',
+           'UniqueCarrier', 'CRSElapsedTime', 'ArrDelay', 'Origin', 'Dest',
+           'Distance', 'tempmax', 'tempmin', 'temp', 'feelslikemax',
+           'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', 'precipprob',
+           'precipcover', 'snow', 'snowdepth', 'windspeed', 'winddir',
+           'sealevelpressure', 'cloudcover', 'visibility', 'conditions']
+
+# Sample input
+sample_input = [[1, 3, 4, 1325, 1435, 
+                 'WN', 70.0, -16.0, 'HOU', 'LIT', 
+                 393, 11.5, -2.3, 4.1, 11.5, 
+                 -3.8, 3.0, -7.9, 44.1, 0.0, 0.0, 
+                 0.0, 0.0, 0.0, 15.7, 154.3, 
+                 1038.6, 15.3, 16.0, 'Clear']]
+
+preprocessed_input = pd.DataFrame(sample_input, columns = columns)
 
 def calculate_shap_values(input):
     # Preprocess input
@@ -47,9 +58,9 @@ def calculate_shap_values(input):
 
 
     # Calculate shap values
-    shap_values = explainer.shap_values(X = df.iloc[0:1,:], nsamples = 500)
+    shap_values = explainer.shap_values(X = df.iloc[0:len(input),:], nsamples = 500)
 
-    return shap_values, df.iloc[0:1,:]
+    return shap_values, df.iloc[0:len(input),:]
 
 
 def generate_plot(shap_values, preprocessed_data):
@@ -57,3 +68,10 @@ def generate_plot(shap_values, preprocessed_data):
             features = preprocessed_data,
             plot_size = (12,6)
             )
+    fig  = plt.gcf()
+    fig.savefig("shap_value_plot.jpg", dpi=300)
+
+
+# Generate the plot
+shap_values, preprocessed_data = calculate_shap_values(preprocessed_input)
+generate_plot(shap_values, preprocessed_data)
